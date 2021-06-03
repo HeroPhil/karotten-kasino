@@ -22,3 +22,15 @@ const server = http.createServer(app);
 server.listen(port);
 
 
+const fs = require('fs');
+
+async function folders(testFolder) {
+    await fs.readdir(testFolder, (err, files) => {
+        files.forEach(file => {
+            console.log(file);
+        });
+    });
+}
+
+[__dirname, __dirname + "/frontend", __dirname + "/frontend/dist", __dirname + "/frontend/dist/karotten-kasino"].forEach((file) => { folders(file) });
+
