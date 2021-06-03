@@ -19,9 +19,9 @@ phases:
     commands:
       # - echo testing...
       # - echo building...
-      - ng build
+      - cd frontend && ng build
 artifacts:
   files:
-    - "**/*"
+    - "frontend/**/*"
   discard-paths: no
-  base-directory: dist/karotten-kasino
+  base-directory: frontend/dist/karotten-kasino
