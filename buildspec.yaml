@@ -21,7 +21,6 @@ phases:
       # - echo building...
       - cd frontend && ng build
 artifacts:
+  name: "ng-compiled"
   files:
-    - "frontend/**/*"
-  discard-paths: no
-  base-directory: frontend/dist/karotten-kasino
+    - "**/*"
