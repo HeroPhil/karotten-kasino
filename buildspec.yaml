@@ -13,9 +13,8 @@ phases:
   pre_build:
     commands:
       - echo installing dependencies...
-      - cd frontend
-      - npm i -g @angular/cli
-      - npm ci
+      - cd frontend && npm i -g @angular/cli
+      - cd frontend && npm ci
   build:
     commands:
       # - echo testing...
