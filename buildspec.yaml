@@ -17,8 +17,7 @@ phases:
       - cd frontend && npm ci
   build:
     commands:
-      # - echo testing...
-      # - echo building...
+      - npm run build
       - cd frontend && ng build
 artifacts:
   name: "ng-compiled"
