@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { DebugComponent } from './debug/debug.component';
+import {ButtonModule} from 'primeng/button';
 
 import { SocketIoModule, SocketIoConfig, Socket } from 'ngx-socket-io';
 
@@ -22,7 +23,8 @@ const config: SocketIoConfig = {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
