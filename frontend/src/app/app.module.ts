@@ -9,13 +9,12 @@ import { MenuComponent } from './screens/landing-screen/components/menu/menu.com
 import { FooterComponent } from './screens/landing-screen/components/footer/footer.component';
 import { ContentPreviewSliderComponent } from './screens/landing-screen/components/content-preview-slider/content-preview-slider.component';
 import { TabMenuModule } from 'primeng/tabmenu';
-import {CarouselModule} from 'primeng/carousel';
+import { CarouselModule } from 'primeng/carousel';
 
 
 const config: SocketIoConfig = {
-  url: "http://localhost:3000", // ?
-  options: {},
-};
+  url: window.location.origin,
+};  // ?
 
 @NgModule({
   declarations: [
