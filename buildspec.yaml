@@ -15,7 +15,7 @@ phases:
       - echo installing dependencies...
       - cd frontend && npm i -g @angular/cli
       - npm ci
-      - cd frontend && npm ci
+      - cd frontend && npm ci --force
   build:
     commands:
       - npm run build
