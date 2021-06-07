@@ -13,8 +13,9 @@ phases:
   pre_build:
     commands:
       - echo installing dependencies...
+      - cd frontend && npm install --force
       - cd frontend && npm i -g @angular/cli
-      - npm ci
+      - npm ci --force
       - cd frontend && npm ci --force
   build:
     commands:
