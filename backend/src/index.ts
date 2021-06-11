@@ -1,9 +1,12 @@
+import { LobbyHandler } from "./lobby";
 import { BackendServer } from "./server";
 
 export const server = new BackendServer();
 
+const lobbyHandler = new LobbyHandler();
+
 server.addSocketHandler((socket) => {
-    return socket.on("getTime", () => {
+    socket.on("getTime", () => {
         console.log("time requested");
         socket.emit("resTime", Date.now().toLocaleString());
     });

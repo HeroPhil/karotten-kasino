@@ -11,10 +11,16 @@ import { ContentPreviewSliderComponent } from './screens/landing-screen/componen
 import { TabMenuModule } from 'primeng/tabmenu';
 import { CarouselModule } from 'primeng/carousel';
 import { LobbyScreenComponent } from './screens/lobby-screen/lobby-screen.component';
+import { JoinLobbyComponent } from './screens/lobby-screen/components/join-lobby/join-lobby.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PriceIsNiceScreenComponent } from './screens/price-is-nice-screen/price-is-nice-screen.component';
+import { PlayerListComponent } from './screens/price-is-nice-screen/components/player-list/player-list.component';
+import { GuessInputComponent } from './screens/price-is-nice-screen/components/guess-input/guess-input.component';
 
 
 const config: SocketIoConfig = {
-  url: window.location.origin,
+  url: window.location.origin, // TODO find solution for better dev testing
 };  // ?
 
 @NgModule({
@@ -25,14 +31,21 @@ const config: SocketIoConfig = {
     MenuComponent,
     FooterComponent,
     ContentPreviewSliderComponent,
-    LobbyScreenComponent
+    LobbyScreenComponent,
+    JoinLobbyComponent,
+    PriceIsNiceScreenComponent,
+    PlayerListComponent,
+    GuessInputComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SocketIoModule.forRoot(config),
     TabMenuModule,
-    CarouselModule
+    CarouselModule,
+    InputTextModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

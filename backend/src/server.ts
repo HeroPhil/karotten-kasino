@@ -6,7 +6,7 @@ import { DefaultEventsMap } from "socket.io/dist/typed-events";
 export class BackendServer {
     app = express();
     port = process.env.PORT || 3000;
-    private socketHandlers: ((socket: Socket) => Socket)[] = [];
+    private socketHandlers: ((socket: Socket) => any)[] = [];
 
     start = () => {
         this.app.use(express.static(process.cwd() + "/frontend/dist/karotten-kasino"));
@@ -35,7 +35,7 @@ export class BackendServer {
         server.listen(this.port, () => console.log("Server running on localhost:" + this.port + "🚀"));
     }
 
-    addSocketHandler = (handler: (socket: Socket) => Socket) => {
+    addSocketHandler = (handler: (socket: Socket) => any) => {
         this.socketHandlers.push(handler);
     }
 
