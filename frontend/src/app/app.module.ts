@@ -10,6 +10,7 @@ import { FooterComponent } from './screens/landing-screen/components/footer/foot
 import { ContentPreviewSliderComponent } from './screens/landing-screen/components/content-preview-slider/content-preview-slider.component';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { CarouselModule } from 'primeng/carousel';
+import { LobbyScreenComponent } from './screens/lobby-screen/lobby-screen.component';
 
 
 const config: SocketIoConfig = {
@@ -23,7 +24,8 @@ const config: SocketIoConfig = {
     LandingScreenComponent,
     MenuComponent,
     FooterComponent,
-    ContentPreviewSliderComponent
+    ContentPreviewSliderComponent,
+    LobbyScreenComponent
   ],
   imports: [
     BrowserModule,

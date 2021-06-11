@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentPreviewSliderComponent implements OnInit {
 
-  games = ["Game1", "Game2", "Game3"];
+  games = ["Der Preis ist NICE", "Game2", "Game3"];
 
   constructor() { }
 
