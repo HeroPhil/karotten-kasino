@@ -7,6 +7,7 @@ export class BackendServer {
     app = express();
     port = process.env.PORT || 3000;
     private socketHandlers: ((socket: Socket) => any)[] = [];
+    io!: Server;
 
     start = () => {
         this.app.use(express.static(process.cwd() + "/frontend/dist/karotten-kasino"));
@@ -19,11 +20,11 @@ export class BackendServer {
 
         const server = http.createServer(this.app);
 
-        const io = new Server(server,
+        this.io = new Server(server,
             // { cors: { origin: "localhost:" + port } }
         );
 
-        io.on("connection", (socket) => {
+        this.io.on("connection", (socket) => {
             console.log("new connection: " + socket.id);
 
             this.socketHandlers.forEach(handler => {

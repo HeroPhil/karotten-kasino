@@ -19,8 +19,4 @@ export class PlayerListComponent implements OnInit {
     });
   }
 
-  forceReload() {
-    this.lobbyService.getPlayers();
-  }
-
 }

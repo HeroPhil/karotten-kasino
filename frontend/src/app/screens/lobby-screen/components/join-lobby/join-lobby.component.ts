@@ -11,15 +11,15 @@ import { LobbyService } from 'src/app/services/lobby.service';
 export class JoinLobbyComponent implements OnInit {
 
 
-  constructor(private lobbyService: LobbyService, private formBuilder: FormBuilder , private router: Router) { }
+  constructor(private lobbyService: LobbyService, private formBuilder: FormBuilder, private router: Router) { }
 
-  joinForm = this.formBuilder.group({lobbyCode: ""});
+  joinForm = this.formBuilder.group({ lobbyCode: "", displayName: "" });
 
   ngOnInit(): void {
   }
 
   onSubmit(): void {
-    this.lobbyService.joinLobby(this.joinForm.value.lobbyCode, () => {
+    this.lobbyService.joinLobby(this.joinForm.value.lobbyCode, this.joinForm.value.displayName, () => {
       this.router.navigate(["/price-is-nice"]);
     }); // TODO validate input
   }

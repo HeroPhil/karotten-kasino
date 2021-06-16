@@ -1,20 +1,27 @@
+import { Player } from "./player";
+
 export class Lobby {
 
-    private clients: string[] = [];
+    private players: Player[] = [];
 
-    constructor(public id: string) {}
+    constructor(public id: string) { }
 
-    addClient(clientId: string) {
-        if(!this.clients.includes(clientId)) {
-            this.clients.push(clientId);
+    addPlayer(clientId: string, displayName: string) {
+        if (!this.hasPlayer(clientId)) {
+            this.players.push(new Player(clientId, displayName));
         }
     }
 
-    hasClient(clientId: string) {
-        return this.clients.includes(clientId);
-    } 
+    hasPlayer(clientId: string) {
+        for (const player of this.players) {
+            if (player.id == clientId) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    getClients() {
-        return this.clients;
+    getPlayers() {
+        return this.players;
     }
 }

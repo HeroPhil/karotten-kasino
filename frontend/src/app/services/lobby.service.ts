@@ -14,16 +14,12 @@ export class LobbyService {
         this.joinCallback();
         this.joinCallback = undefined;
       }
-    });  
-   }
-
-  joinLobby(lobbyCode: string, callback: () => any) {
-    this.socket.emit("joinLobby", lobbyCode);
-    this.joinCallback = callback;
+    });
   }
 
-  getPlayers() {
-    this.socket.emit("getPlayers");
+  joinLobby(lobbyCode: string, displayName: string, callback: () => any) {
+    this.socket.emit("joinLobby", { lobbyCode: lobbyCode, displayName: displayName });
+    this.joinCallback = callback;
   }
 
   players = this.socket.fromEvent<string[]>("playerList");
