@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LobbyService } from 'src/app/services/lobby.service';
+import { LobbyService, PlayerListEntry } from 'src/app/services/lobby.service';
 
 @Component({
   selector: 'player-list',
@@ -10,12 +10,12 @@ export class PlayerListComponent implements OnInit {
 
   constructor(private lobbyService: LobbyService) { }
 
-  players: string[] = [];
+  players: PlayerListEntry[] = [];
 
   ngOnInit(): void {
     this.lobbyService.players.subscribe(players => {
       console.log("updating players: " + players);
-      this.players = players
+      this.players = players;
     });
   }
 

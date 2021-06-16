@@ -1,3 +1,6 @@
 <div *ngFor="let player of players">
-    <p>{{ player }}</p>
+    <p>
+        {{ player.displayName }}
+        <span *ngIf="player.isBabo"> baboicon</span>
+    </p>
 </div>

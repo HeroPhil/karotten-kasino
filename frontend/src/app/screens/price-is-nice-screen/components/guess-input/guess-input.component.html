@@ -1,1 +1,10 @@
-<p>guess-input works!</p>
+<form [formGroup]="guessForm" (ngSubmit)="onSubmit()">
+
+    <span class="p-float-label">
+        <input id="float-input" type="text" formControlName="guessValue" pInputText>
+        <label for="float-input">Münzen</label>
+    </span>
+
+    <button type="submit">ick schwöer dat cost so fiell</button>
+
+</form>

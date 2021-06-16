@@ -17,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PriceIsNiceScreenComponent } from './screens/price-is-nice-screen/price-is-nice-screen.component';
 import { PlayerListComponent } from './screens/price-is-nice-screen/components/player-list/player-list.component';
 import { GuessInputComponent } from './screens/price-is-nice-screen/components/guess-input/guess-input.component';
-
+import { GuessResultComponent } from './screens/price-is-nice-screen/components/guess-result/guess-result.component';
+import { TableModule } from 'primeng/table';
 
 const config: SocketIoConfig = {
   url: window.location.origin, // TODO find solution for better dev testing
@@ -35,7 +36,8 @@ const config: SocketIoConfig = {
     JoinLobbyComponent,
     PriceIsNiceScreenComponent,
     PlayerListComponent,
-    GuessInputComponent
+    GuessInputComponent,
+    GuessResultComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ const config: SocketIoConfig = {
     CarouselModule,
     InputTextModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
