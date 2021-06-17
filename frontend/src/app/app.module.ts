@@ -19,6 +19,7 @@ import { PlayerListComponent } from './screens/price-is-nice-screen/components/p
 import { GuessInputComponent } from './screens/price-is-nice-screen/components/guess-input/guess-input.component';
 import { GuessResultComponent } from './screens/price-is-nice-screen/components/guess-result/guess-result.component';
 import { TableModule } from 'primeng/table';
+import {ButtonModule} from 'primeng/button';
 
 const config: SocketIoConfig = {
   url: window.location.origin, // TODO find solution for better dev testing
@@ -48,7 +49,8 @@ const config: SocketIoConfig = {
     InputTextModule,
     FormsModule,
     ReactiveFormsModule,
-    TableModule
+    TableModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
