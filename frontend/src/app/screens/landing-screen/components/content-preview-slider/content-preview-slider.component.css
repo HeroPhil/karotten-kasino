@@ -1,0 +1,29 @@
+@font-face {
+    font-family: AngryBlu;
+    src: url("../../../../../assets/fonts/ANGRYBLU.TTF") format("truetype");
+    font-weight: bold;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+.slideShowContainer {
+    padding: var(--content-padding);
+    background-image: url("../../../../../assets/images/gamer.jpg");
+    height: 60vh;
+}
+
+.gameTitle {
+    font-family: AngryBlu;
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 3rem;
+}
+
+#routing {
+    text-decoration: none;
+    bottom: 0px;
+}
+.contentContainer{
+    display: flex;
+    justify-content: center;
+    bottom: 0px;
+}

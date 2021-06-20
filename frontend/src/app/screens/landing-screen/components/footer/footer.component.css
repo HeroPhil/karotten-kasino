@@ -1,0 +1,7 @@
+.footer {
+    background-color: var(--surface-100);
+    padding: var(--content-padding);
+    width: 97vw;
+    position: fixed;
+    bottom: 15px;
+}

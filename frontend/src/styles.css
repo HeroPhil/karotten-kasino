@@ -5,3 +5,16 @@ html {
     color: var(--text-color);
     font-family: var(--font-family);
 }
+
+@font-face {
+    font-family: sketch;
+    src: url("./assets/fonts/Sketch.woff") format("woff");
+    font-weight: bold;
+}
+
+.title {
+    font-family: sketch;
+    color: var(--primary-color);
+    font-size: 4.5rem;
+}
+
