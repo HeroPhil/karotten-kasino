@@ -1,5 +1,7 @@
 <player-list></player-list>
 <hr>
-<guess-input></guess-input>
+<guess-input [hidden]="!(!isBabo && lobbyStatus == 2)"></guess-input>
+<babo-input [hidden]="!(isBabo && lobbyStatus == 1)"></babo-input>
 <hr>
-<guess-result></guess-result>
+<guess-result [hidden]="!(lobbyStatus == 3)"></guess-result>
+<babo-result [hidden]="!(isBabo && lobbyStatus == 3)"></babo-result>

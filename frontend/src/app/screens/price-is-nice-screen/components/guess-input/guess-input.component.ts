@@ -18,6 +18,7 @@ export class GuessInputComponent implements OnInit {
 
   onSubmit(): void {
     this.lobbyService.takeGuess(this.guessForm.value.guessValue);
+    this.guessForm.reset();
   }
 
 }
