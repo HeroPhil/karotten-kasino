@@ -17,8 +17,8 @@ export class BaboInputComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("submiting guess information" + this.guessInformationForm.value.price);
     this.lobbyService.submitGuessInformation(this.guessInformationForm.value);
+    this.guessInformationForm.reset();
   }
 
 }
