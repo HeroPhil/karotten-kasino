@@ -1,4 +1,4 @@
-import { LobbyHandler } from "./lobby";
+import { LobbyHandler } from "./price-is-nice";
 import { BackendServer } from "./server";
 
 export const server = new BackendServer();
