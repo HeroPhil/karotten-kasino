@@ -48,11 +48,15 @@ export class LobbyService {
 export interface GuessResult {
   displayName: string,
   guessValue: number,
+  guessDelta: number,
+  points: number,
+  pointsDelta: number,
 }
 
 export interface PlayerListEntry {
   displayName: string,
   isBabo: boolean,
+  points: number,
 }
 
 export interface GuessInformation {

@@ -15,12 +15,17 @@ export class GuessResultComponent implements OnInit {
 
   ngOnInit(): void {
     this.lobbyService.guessResults.subscribe((results) => {
-      this.results = results;
+      this.results = results.sort((a, b) =>
+        a.guessDelta - b.guessDelta
+      );
     });
 
     this.cols = [
       { field: 'displayName', header: 'Spieler' },
       { field: 'guessValue', header: 'Münzen' },
+      { field: 'guessDelta', header: 'Miese' },
+      { field: 'points', header: 'Score' },
+      { field: 'pointsDelta', header: '' },
     ];
 
   }

@@ -1,4 +1,4 @@
 export class GuessInformation {
     
-    constructor(private price: Number) {};
+    constructor(public price: number) {};
 }

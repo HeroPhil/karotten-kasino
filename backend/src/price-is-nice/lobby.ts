@@ -64,16 +64,17 @@ export class Lobby {
 
     allPlayersHaveGuessed(): boolean {
         for (const player of this.players) {
-            if (player.guess == undefined && player.id != this.baboId) {
+            if (player.guessValue == undefined && player.id != this.baboId) {
                 return false;
             }
         }
         return true;
     }
 
-    clearGuesses() {
+    prepNextRound() {
+        this.currentGuessInformation = undefined;
         for (const player of this.players) {
-            player.guess = undefined;
+            player.prepNextRound();
         }
 
     }

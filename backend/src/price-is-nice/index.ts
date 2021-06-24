@@ -1,3 +1,4 @@
+import { off } from "process";
 import { Socket } from "socket.io";
 import { isObject } from "util";
 import { server } from "..";
@@ -43,6 +44,7 @@ export class LobbyHandler {
             return {
                 displayName: player.displayName,
                 isBabo: (player.id == lobby!.baboId),
+                points: player.points,
             }
         }));
         // including the new babo of course
@@ -84,6 +86,7 @@ export class LobbyHandler {
                     return {
                         displayName: player.displayName,
                         isBabo: (player.id == lobby!.baboId),
+                        points: player.points,
                     }
                 }));
                 if (lobby.baboId == socket.id) {
@@ -106,8 +109,8 @@ export class LobbyHandler {
                     return;
                 }
 
-                if (currentPlayer.guess == undefined) {
-                    currentPlayer.guess = guessValue;
+                if (currentPlayer.guessValue == undefined) {
+                    currentPlayer.guessValue = guessValue;
                 }
 
                 socket.emit("takeGuessAkw");
@@ -115,11 +118,53 @@ export class LobbyHandler {
                 if (currentLobby.allPlayersHaveGuessed()) {
 
                     // calc points etc
+                    currentLobby.getPlayers().forEach((player) => {
+                        if (player.id == currentLobby.baboId) {
+                            return;
+                        }
+                        player.compareToSolution(currentLobby.currentGuessInformation!.price);
+                    });
+                    currentLobby.getPlayers()
+                        .filter((player) => player.id != currentLobby.baboId)
+                        .slice()
+                        .sort((a, b) => a.guessDelta! - b.guessDelta!)
+                        .forEach((maybeARefPlayer, index, rankedPlayer) => {
+                            if (maybeARefPlayer.id == currentLobby.baboId) {
+                                return;
+                            }
+                            const player = currentLobby.getPlayer(maybeARefPlayer.id);
+                            if (player == undefined) {
+                                return;
+                            }
+                            let pos = index;
+                                for(let offset = 1; offset <= index; offset++) {
+                                    if(rankedPlayer[index - offset].guessDelta! < player.guessDelta!) {
+                                        break;
+                                    }
+                                    pos--;
+                                }
+                            if(pos <= 3) {   
+                                player.givePoints(3 - pos); // TODO better points distribution
+                            }
+                            if (player.guessValue == currentLobby.currentGuessInformation?.price) {
+                                player.givePoints(1);
+                            }
+                        });
 
                     server.io.to(currentLobby.id).emit("guessResults", currentLobby.getPlayers().filter((player) => player.id != currentLobby.baboId).map(player => {
                         return {
                             displayName: player.displayName,
-                            guessValue: player.guess
+                            guessValue: player.guessValue,
+                            guessDelta: player.guessDelta,
+                            points: player.points,
+                            pointsDelta: player.pointsDelta,
+                        }
+                    }));
+                    server.io.in(currentLobby.id).emit("playerList", currentLobby.getPlayers().map((player) => {
+                        return {
+                            displayName: player.displayName,
+                            isBabo: (player.id == currentLobby!.baboId),
+                            points: player.points,
                         }
                     }));
 
@@ -138,7 +183,7 @@ export class LobbyHandler {
 
                 if (currentLobby.getLobbyStatus() == LobbyStatus.guessClosed && socket.id == currentLobby.baboId) {
                     this.advanceLobby(currentLobby); // to 0
-                    currentLobby.clearGuesses();
+                    currentLobby.prepNextRound();
                     this.crownNewBabo(currentLobby);
                     this.advanceLobby(currentLobby); // to 1
                 }
@@ -157,7 +202,7 @@ export class LobbyHandler {
                     const price: number = args.price;
 
                     currentLobby.currentGuessInformation = new GuessInformation(price);
-                    
+
                     this.advanceLobby(currentLobby); // to 2
 
                 }
