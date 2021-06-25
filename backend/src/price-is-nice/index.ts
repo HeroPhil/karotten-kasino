@@ -136,15 +136,15 @@ export class LobbyHandler {
                             if (player == undefined) {
                                 return;
                             }
-                            let pos = index;
-                                for(let offset = 1; offset <= index; offset++) {
-                                    if(rankedPlayer[index - offset].guessDelta! < player.guessDelta!) {
-                                        break;
-                                    }
-                                    pos--;
+                            let pos = index + 1;
+                            for (let offset = 1; offset <= index; offset++) {
+                                if (rankedPlayer[index - offset].guessDelta! < player.guessDelta!) {
+                                    break;
                                 }
-                            if(pos <= 3) {   
-                                player.givePoints(3 - pos); // TODO better points distribution
+                                pos--;
+                            }
+                            if (pos <= 3) {
+                                player.givePoints(4 - pos); // TODO better points distribution″
                             }
                             if (player.guessValue == currentLobby.currentGuessInformation?.price) {
                                 player.givePoints(1);
