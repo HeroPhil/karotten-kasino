@@ -22,6 +22,7 @@ import { TableModule } from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
 import { BaboInputComponent } from './screens/price-is-nice-screen/components/babo-input/babo-input.component';
 import { BaboResultComponent } from './screens/price-is-nice-screen/components/babo-result/babo-result.component';
+import {ToastModule} from 'primeng/toast';
 
 const config: SocketIoConfig = {
   url: window.location.origin, // TODO find solution for better dev testing
@@ -54,7 +55,8 @@ const config: SocketIoConfig = {
     FormsModule,
     ReactiveFormsModule,
     TableModule,
-    ButtonModule
+    ButtonModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

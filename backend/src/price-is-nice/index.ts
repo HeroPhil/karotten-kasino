@@ -1,4 +1,5 @@
 import { off } from "process";
+import { cursorTo } from "readline";
 import { Socket } from "socket.io";
 import { isObject } from "util";
 import { server } from "..";
@@ -18,28 +19,18 @@ export class LobbyHandler {
         }
     }
 
-    advanceLobby(lobby: Lobby) {
+    advanceLobby(lobby: Lobby, newLobbyStatus?: LobbyStatus) {
         if (lobby != undefined) {
-            lobby.advanceLobbyStatus();
+            if (newLobbyStatus != undefined) {
+                lobby.setLobbyStatus(newLobbyStatus);
+            } else {
+                lobby.advanceLobbyStatus();
+            }
             server.io.to(lobby.id).emit("lobbyStatus", lobby.getLobbyStatus());
         }
     }
 
-    // TODO use in disconnect protocol
-    setBaboIfNonExists(lobby: Lobby) {
-        if (lobby.baboId == undefined || lobby.getBabo() == undefined) {
-            lobby.setNextBabo();
-        }
-    }
-
-    crownNewBabo(lobby: Lobby) {
-        // overthrow old babo
-        server.io.to(lobby.baboId).emit("youAreBabo", false);
-
-        // find new babo
-        lobby.setNextBabo();
-
-        // tell everyone
+    publishPlayerList(lobby: Lobby) {
         server.io.in(lobby.id).emit("playerList", lobby.getPlayers().map((player) => {
             return {
                 displayName: player.displayName,
@@ -47,8 +38,74 @@ export class LobbyHandler {
                 points: player.points,
             }
         }));
+    }
+
+    crownNewBabo(lobby: Lobby) {
+        // overthrow old babo
+        if (lobby.baboId != undefined) {
+            server.io.to(lobby.baboId).emit("youAreBabo", false);
+        }
+
+        // find new babo
+        lobby.setNextBabo();
+
+        // tell everyone
+        this.publishPlayerList(lobby);
+
         // including the new babo of course
-        server.io.to(lobby.baboId).emit("youAreBabo", true);
+        server.io.to(lobby.baboId!).emit("youAreBabo", true);
+    }
+
+    awardPointsIfAllPlayersHaveGuessed(lobby: Lobby) {
+        if (lobby.allPlayersHaveGuessed()) {
+
+            // calc points etc
+            lobby.getPlayers().forEach((player) => {
+                if (player.id == lobby.baboId) {
+                    return;
+                }
+                player.compareToSolution(lobby.currentGuessInformation!.price);
+            });
+            lobby.getPlayers()
+                .filter((player) => player.id != lobby.baboId)
+                .slice()
+                .sort((a, b) => a.guessDelta! - b.guessDelta!)
+                .forEach((maybeARefPlayer, index, rankedPlayer) => {
+                    if (maybeARefPlayer.id == lobby.baboId) {
+                        return;
+                    }
+                    const player = lobby.getPlayer(maybeARefPlayer.id);
+                    if (player == undefined) {
+                        return;
+                    }
+                    let pos = index + 1;
+                    for (let offset = 1; offset <= index; offset++) {
+                        if (rankedPlayer[index - offset].guessDelta! < player.guessDelta!) {
+                            break;
+                        }
+                        pos--;
+                    }
+                    if (pos <= 3) {
+                        player.givePoints(4 - pos); // TODO better points distribution″
+                    }
+                    if (player.guessValue == lobby.currentGuessInformation?.price) {
+                        player.givePoints(1);
+                    }
+                });
+
+            server.io.to(lobby.id).emit("guessResults", lobby.getPlayers().filter((player) => player.id != lobby.baboId).map(player => {
+                return {
+                    displayName: player.displayName,
+                    guessValue: player.guessValue,
+                    guessDelta: player.guessDelta,
+                    points: player.points,
+                    pointsDelta: player.pointsDelta,
+                }
+            }));
+            this.publishPlayerList(lobby);
+
+            this.advanceLobby(lobby); // to 3
+        }
     }
 
 
@@ -82,13 +139,9 @@ export class LobbyHandler {
 
                 socket.emit("lobbyStatus", lobby.getLobbyStatus());
 
-                server.io.in(lobby.id).emit("playerList", lobby.getPlayers().map((player) => {
-                    return {
-                        displayName: player.displayName,
-                        isBabo: (player.id == lobby!.baboId),
-                        points: player.points,
-                    }
-                }));
+                this.publishPlayerList(lobby);
+                socket.to(lobby.id).emit("playerJoined", lobby.getPlayer(socket.id)?.displayName);
+
                 if (lobby.baboId == socket.id) {
                     socket.emit("youAreBabo", true);
                 }
@@ -115,61 +168,8 @@ export class LobbyHandler {
 
                 socket.emit("takeGuessAkw");
 
-                if (currentLobby.allPlayersHaveGuessed()) {
+                this.awardPointsIfAllPlayersHaveGuessed(currentLobby);
 
-                    // calc points etc
-                    currentLobby.getPlayers().forEach((player) => {
-                        if (player.id == currentLobby.baboId) {
-                            return;
-                        }
-                        player.compareToSolution(currentLobby.currentGuessInformation!.price);
-                    });
-                    currentLobby.getPlayers()
-                        .filter((player) => player.id != currentLobby.baboId)
-                        .slice()
-                        .sort((a, b) => a.guessDelta! - b.guessDelta!)
-                        .forEach((maybeARefPlayer, index, rankedPlayer) => {
-                            if (maybeARefPlayer.id == currentLobby.baboId) {
-                                return;
-                            }
-                            const player = currentLobby.getPlayer(maybeARefPlayer.id);
-                            if (player == undefined) {
-                                return;
-                            }
-                            let pos = index + 1;
-                            for (let offset = 1; offset <= index; offset++) {
-                                if (rankedPlayer[index - offset].guessDelta! < player.guessDelta!) {
-                                    break;
-                                }
-                                pos--;
-                            }
-                            if (pos <= 3) {
-                                player.givePoints(4 - pos); // TODO better points distribution″
-                            }
-                            if (player.guessValue == currentLobby.currentGuessInformation?.price) {
-                                player.givePoints(1);
-                            }
-                        });
-
-                    server.io.to(currentLobby.id).emit("guessResults", currentLobby.getPlayers().filter((player) => player.id != currentLobby.baboId).map(player => {
-                        return {
-                            displayName: player.displayName,
-                            guessValue: player.guessValue,
-                            guessDelta: player.guessDelta,
-                            points: player.points,
-                            pointsDelta: player.pointsDelta,
-                        }
-                    }));
-                    server.io.in(currentLobby.id).emit("playerList", currentLobby.getPlayers().map((player) => {
-                        return {
-                            displayName: player.displayName,
-                            isBabo: (player.id == currentLobby!.baboId),
-                            points: player.points,
-                        }
-                    }));
-
-                    this.advanceLobby(currentLobby); // to 3
-                }
 
             });
         });
@@ -208,6 +208,43 @@ export class LobbyHandler {
                 }
 
 
+            });
+        });
+
+        server.addSocketHandler(socket => {
+            socket.on("disconnect", (reason) => {
+                console.log("player " + socket.id + " disconnected; Reason: " + reason);
+
+                const currentLobby = this.getLobbyFromPlayerId(socket.id);
+                if (currentLobby != undefined) {
+
+                    const player = currentLobby.getPlayer(socket.id);
+                    currentLobby.yeetPlayer(player!.id);
+
+                    // remove lobby if lobby is empty
+                    if (currentLobby.getPlayers().length < 1) {
+                        console.log("lobby " + currentLobby.id + " closed; Reason: No players left.");
+                        this.lobbies.splice(this.lobbies.indexOf(currentLobby), 1);
+                        return;
+                    }
+
+                    // handle if leaving player is current babo
+                    if (socket.id == currentLobby.baboId) {
+                        this.advanceLobby(currentLobby, LobbyStatus.roundSetup);
+                        currentLobby.prepNextRound();
+                        this.crownNewBabo(currentLobby);
+                        this.advanceLobby(currentLobby); // to 1
+                    }
+
+                    // update player list for all other clients
+                    socket.to(currentLobby.id).emit("playerYeeted", player!.displayName);
+                    this.publishPlayerList(currentLobby);
+
+                    // if round could have resumed after player left, check if the leaving player was the only one still to guess
+                    if (currentLobby.getLobbyStatus() == LobbyStatus.guessOpen) {
+                        this.awardPointsIfAllPlayersHaveGuessed(currentLobby);
+                    }
+                }
             });
         });
 

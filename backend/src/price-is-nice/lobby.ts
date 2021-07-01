@@ -11,7 +11,7 @@ export enum LobbyStatus {
 export class Lobby {
 
     private players: Player[] = [];
-    public baboId!: string;
+    public baboId: string | undefined;
     private lobbyStatus!: LobbyStatus;
     public currentGuessInformation: GuessInformation | undefined;
     
@@ -21,6 +21,10 @@ export class Lobby {
 
     getLobbyStatus() {
         return this.lobbyStatus;
+    }
+
+    setLobbyStatus(lobbyStatus: LobbyStatus) {
+        this.lobbyStatus = lobbyStatus;
     }
 
     advanceLobbyStatus() {
@@ -35,6 +39,10 @@ export class Lobby {
                 this.baboId = clientId; // first player is the first babo
             }
         }
+    }
+
+    yeetPlayer(clientId: string) {
+        this.players.splice(this.players.findIndex((player) => player.id == clientId),1);
     }
 
     hasPlayer(clientId: string) {

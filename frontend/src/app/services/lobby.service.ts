@@ -21,6 +21,8 @@ export class LobbyService {
   isBabo = this.socket.fromEvent<boolean>("youAreBabo");
   guessResults = this.socket.fromEvent<GuessResult[]>("guessResults");
   lobbyStatus = this.socket.fromEvent<number>("lobbyStatus");
+  playerJoined = this.socket.fromEvent<string>("playerJoined");
+  playerYeeted = this.socket.fromEvent<string>("playerYeeted");
 
 
   joinLobby(lobbyCode: string, displayName: string, callback: () => any) {
