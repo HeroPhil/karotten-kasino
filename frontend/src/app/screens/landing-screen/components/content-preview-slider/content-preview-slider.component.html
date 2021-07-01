@@ -1,9 +1,9 @@
 <p-carousel [value]="games" [numVisible]="1" [numScroll]="1" [circular]="true">
     <ng-template let-game pTemplate="item">
 
-
         <div class="slideShowContainer">
-            <h2 class="gameTitle">{{game}}</h2>
+            <img src="./assets/images/{{game.image}}">
+            <h2 class="gameTitle">{{game.name}}</h2>
             <!-- <a routerLink="/lobby">Lets game it out</a> -->
             <div class="contentContainer">
                 <a id="routing" routerLink="/lobby">
@@ -13,7 +13,8 @@
         </div>
 
 
+
     </ng-template>
 </p-carousel>
 
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> 

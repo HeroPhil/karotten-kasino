@@ -1,0 +1,16 @@
+img {
+    height: 2rem;
+    width: auto;
+}
+
+p {
+    font-size: 1.8rem;
+    color: var(--text-color);
+}
+
+#points {
+    font-family: AngryBlu;
+    font-size: 2.4rem;
+    color: var(--primary-color);
+    margin-left: 2rem;
+}
