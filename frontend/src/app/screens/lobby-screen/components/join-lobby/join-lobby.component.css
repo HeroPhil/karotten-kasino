@@ -1,4 +1,5 @@
+@import url("../../../landing-screen/components/content-preview-slider/content-preview-slider.component.css");
 .p-float-label {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
 }

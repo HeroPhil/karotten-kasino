@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LobbyService } from 'src/app/services/lobby.service';
@@ -9,7 +9,6 @@ import { LobbyService } from 'src/app/services/lobby.service';
   styleUrls: ['./join-lobby.component.css']
 })
 export class JoinLobbyComponent implements OnInit {
-
 
   constructor(private lobbyService: LobbyService, private formBuilder: FormBuilder, private router: Router) { }
 
