@@ -1,0 +1,7 @@
+<h3>{{ guessInformation.name }}</h3>
+
+<h3> Preis: {{ guessInformation.price ?? "???" }} €</h3>
+
+<p *ngIf="guessInformation.description != undefined">{{ guessInformation.description }}</p>
+
+<img  *ngFor="let imageUrl of guessInformation.imageUrls" src="{{ imageUrl }}">

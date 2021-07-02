@@ -9,7 +9,14 @@ import { LobbyService } from 'src/app/services/lobby.service';
 })
 export class BaboInputComponent implements OnInit {
 
-  guessInformationForm = this.formBuilder.group({ price: 0 });
+  // imageUrls = [];
+
+  guessInformationForm = this.formBuilder.group({
+    price: undefined,
+    name: undefined,
+    description: undefined,
+    imageUrls: [],
+  });
 
   constructor(private lobbyService: LobbyService, private formBuilder: FormBuilder) { }
 
@@ -19,6 +26,7 @@ export class BaboInputComponent implements OnInit {
   onSubmit() {
     this.lobbyService.submitGuessInformation(this.guessInformationForm.value);
     this.guessInformationForm.reset();
+    this.guessInformationForm.value.imageUrls = [];
   }
 
 }

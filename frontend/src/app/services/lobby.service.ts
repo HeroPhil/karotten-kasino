@@ -20,6 +20,7 @@ export class LobbyService {
   players = this.socket.fromEvent<PlayerListEntry[]>("playerList");
   isBabo = this.socket.fromEvent<boolean>("youAreBabo");
   guessResults = this.socket.fromEvent<GuessResult[]>("guessResults");
+  guessInformation = this.socket.fromEvent<GuessInformation>("guessInformation");
   lobbyStatus = this.socket.fromEvent<number>("lobbyStatus");
   playerJoined = this.socket.fromEvent<string>("playerJoined");
   playerYeeted = this.socket.fromEvent<string>("playerYeeted");
@@ -62,5 +63,8 @@ export interface PlayerListEntry {
 }
 
 export interface GuessInformation {
-  price: number,
+  price?: number | string,
+  name: string,
+  description?: string,
+  imageUrls?: string[],
 }

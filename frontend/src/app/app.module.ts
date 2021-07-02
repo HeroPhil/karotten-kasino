@@ -23,6 +23,8 @@ import {ButtonModule} from 'primeng/button';
 import { BaboInputComponent } from './screens/price-is-nice-screen/components/babo-input/babo-input.component';
 import { BaboResultComponent } from './screens/price-is-nice-screen/components/babo-result/babo-result.component';
 import {ToastModule} from 'primeng/toast';
+import { GuessInformationComponent } from './screens/price-is-nice-screen/components/guess-information/guess-information.component';
+import {ChipsModule} from 'primeng/chips';
 
 const config: SocketIoConfig = {
   url: window.location.origin, // TODO find solution for better dev testing
@@ -43,7 +45,8 @@ const config: SocketIoConfig = {
     GuessInputComponent,
     GuessResultComponent,
     BaboInputComponent,
-    BaboResultComponent
+    BaboResultComponent,
+    GuessInformationComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ const config: SocketIoConfig = {
     ReactiveFormsModule,
     TableModule,
     ButtonModule,
-    ToastModule
+    ToastModule,
+    ChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
