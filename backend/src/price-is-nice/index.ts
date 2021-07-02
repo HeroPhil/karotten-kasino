@@ -1,7 +1,3 @@
-import { off } from "process";
-import { cursorTo } from "readline";
-import { Socket } from "socket.io";
-import { isObject } from "util";
 import { server } from "..";
 import { GuessInformation } from "./guessInformation";
 import { Lobby, LobbyStatus } from "./lobby";
@@ -104,6 +100,8 @@ export class LobbyHandler {
             }));
             this.publishPlayerList(lobby);
 
+            server.io.to(lobby.id).emit("guessInformation", lobby.currentGuessInformation!.getAllInformation());
+
             this.advanceLobby(lobby); // to 3
         }
     }
@@ -140,6 +138,16 @@ export class LobbyHandler {
                 socket.emit("lobbyStatus", lobby.getLobbyStatus());
 
                 this.publishPlayerList(lobby);
+
+                if (lobby!.currentGuessInformation != undefined) {
+                    switch (lobby.getLobbyStatus()) {
+                        case LobbyStatus.guessOpen:
+                            socket.emit("guessInformation", lobby!.currentGuessInformation!.getNonSensitiveInformation());
+                        case LobbyStatus.guessClosed:
+                            socket.emit("guessInformation", lobby!.currentGuessInformation!.getAllInformation());
+                    }
+                }
+
                 socket.to(lobby.id).emit("playerJoined", lobby.getPlayer(socket.id)?.displayName);
 
                 if (lobby.baboId == socket.id) {
@@ -199,14 +207,24 @@ export class LobbyHandler {
                 }
 
                 if (currentLobby.getLobbyStatus() == LobbyStatus.roundStart && socket.id == currentLobby.baboId) {
-                    const price: number = args.price;
 
-                    currentLobby.currentGuessInformation = new GuessInformation(price);
+                    console.log(args.price);
+                    console.log(args.name);
+                    console.log(args.description);
+                    console.log(args.imageUrls);
+
+                    currentLobby.currentGuessInformation = new GuessInformation(
+                        args.price,
+                        args.name,
+                        args.description,
+                        args.imageUrls
+                    );
 
                     this.advanceLobby(currentLobby); // to 2
 
-                }
+                    server.io.to(currentLobby.id).emit("guessInformation", currentLobby.currentGuessInformation.getNonSensitiveInformation());
 
+                }
 
             });
         });
@@ -249,8 +267,5 @@ export class LobbyHandler {
         });
 
     }
-
-
-
 
 }

@@ -5,6 +5,18 @@
         <label for="float-input">Münzen</label>
     </span>
 
+    <span class="p-float-label">
+        <input id="float-input" type="text" formControlName="name" pInputText>
+        <label for="float-input">Name</label>
+    </span>
+
+    <span class="p-float-label">
+        <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize" name="description" ngModel></textarea>
+        <label for="float-input">Beschreibung</label>
+    </span>
+
+    <p-chips name="imageUrls" ngModel separator=" "></p-chips>
+
     <button pButton type="submit">dat weede der nie errate</button>
 
 </form>

@@ -3,6 +3,7 @@
 
 <player-list></player-list>
 <hr>
+<guess-information [hidden]="!(lobbyStatus == 2 || lobbyStatus == 3)"></guess-information>
 <guess-input [hidden]="!(!isBabo && lobbyStatus == 2)"></guess-input>
 <babo-input [hidden]="!(isBabo && lobbyStatus == 1)"></babo-input>
 <hr>
