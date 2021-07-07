@@ -19,18 +19,17 @@ export class MenuComponent implements OnInit {
       {
         label: "Home",
         icon: PrimeIcons.HOME,
+        routerLink: "/"
       },
       {
         label: "Games",
         icon: PrimeIcons.COMPASS,
-      },
-      {
-        label: "Scoreboard",
-        icon: PrimeIcons.BARS,
+        routerLink: "/game-overview"
       },
       {
         label: "Contact",
         icon: PrimeIcons.PHONE,
+        routerLink: "/contact"
       }
     ];
 
