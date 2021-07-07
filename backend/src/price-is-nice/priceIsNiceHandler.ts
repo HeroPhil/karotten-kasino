@@ -222,7 +222,8 @@ export class PriceIsNiceHandler {
 
                     this.advanceLobby(currentLobby); // to 2
 
-                    server.io.to(currentLobby.id).emit("guessInformation", currentLobby.currentGuessInformation.getNonSensitiveInformation());
+                    socket.to(currentLobby.id).emit("guessInformation", currentLobby.currentGuessInformation.getNonSensitiveInformation());
+                    socket.emit("guessInformation", currentLobby.currentGuessInformation.getAllInformation());
 
                 }
 
