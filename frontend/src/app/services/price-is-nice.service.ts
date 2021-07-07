@@ -4,7 +4,7 @@ import { Socket } from 'ngx-socket-io';
 @Injectable({
   providedIn: 'root'
 })
-export class LobbyService {
+export class PriceIsNiceService {
 
   joinCallback: (() => any) | undefined = undefined;
 
