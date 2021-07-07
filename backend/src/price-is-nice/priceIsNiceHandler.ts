@@ -33,7 +33,7 @@ export class PriceIsNiceHandler {
                 isBabo: (player.id == lobby!.baboId),
                 points: player.points,
             }
-        }));
+        }).sort((a, b) => a.isBabo ? -1 : (b.isBabo ? 1 : b.points - a.points)));
     }
 
     crownNewBabo(lobby: Lobby) {

@@ -25,6 +25,7 @@ import { BaboResultComponent } from './screens/price-is-nice-screen/components/b
 import {ToastModule} from 'primeng/toast';
 import { GuessInformationComponent } from './screens/price-is-nice-screen/components/guess-information/guess-information.component';
 import {ChipsModule} from 'primeng/chips';
+import {SplitterModule} from 'primeng/splitter';
 
 const config: SocketIoConfig = {
   url: window.location.origin, // TODO find solution for better dev testing
@@ -60,7 +61,8 @@ const config: SocketIoConfig = {
     TableModule,
     ButtonModule,
     ToastModule,
-    ChipsModule
+    ChipsModule,
+    SplitterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

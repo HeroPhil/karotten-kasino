@@ -1,0 +1,10 @@
+.sliderContainer {
+    height: 50vh;
+    padding: var(--content-padding);
+}
+
+.productImages {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

@@ -17,6 +17,8 @@ export class PriceIsNiceService {
     });
   }
 
+  lobbyCode: string|undefined;
+
   players = this.socket.fromEvent<PlayerListEntry[]>("playerList");
   isBabo = this.socket.fromEvent<boolean>("youAreBabo");
   guessResults = this.socket.fromEvent<GuessResult[]>("guessResults");
@@ -29,6 +31,7 @@ export class PriceIsNiceService {
   joinLobby(lobbyCode: string, displayName: string, callback: () => any) {
     this.socket.emit("joinLobby", { lobbyCode: lobbyCode, displayName: displayName });
     this.joinCallback = callback;
+    this.lobbyCode = lobbyCode;
   }
 
   takeGuess(guessValue: number) {

@@ -12,6 +12,7 @@ export class PriceIsNiceScreenComponent implements OnInit {
 
   lobbyStatus = 0;
   isBabo = false;
+  lobbyCode: string|undefined;
 
   constructor(private priceIsNiceService: PriceIsNiceService, private messageService: MessageService) { }
 
@@ -25,6 +26,7 @@ export class PriceIsNiceScreenComponent implements OnInit {
     });
     this.priceIsNiceService.playerJoined.subscribe((playerName) => this.messageService.add({ summary: playerName + " es beijetrodde", severity: "success" , key: "bc-toast"}));
     this.priceIsNiceService.playerYeeted.subscribe((playerName) => this.messageService.add({ summary: playerName + " hätt de runde verloße", severity: "error", key: "bc-toast"}));
+    this.lobbyCode = this.priceIsNiceService.lobbyCode;
   }
 
 }
