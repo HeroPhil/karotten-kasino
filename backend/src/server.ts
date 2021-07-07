@@ -1,7 +1,6 @@
 import express from "express";
 import http from "http";
 import { Server, Socket } from "socket.io";
-import { DefaultEventsMap } from "socket.io/dist/typed-events";
 
 export class BackendServer {
     app = express();
@@ -21,7 +20,7 @@ export class BackendServer {
         const server = http.createServer(this.app);
 
         this.io = new Server(server,
-            // { cors: { origin: "localhost:" + port } }
+            // { cors: { origin: "*" } }
         );
 
         this.io.on("connection", (socket) => {

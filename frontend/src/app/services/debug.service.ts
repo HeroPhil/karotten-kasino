@@ -14,4 +14,8 @@ export class DebugService {
     console.log("service callback");
     this.socket.emit("getTime");
   }
+
+  scrape(url: string) {
+    this.socket.emit("scrape", url);
+  }
 }
