@@ -1,9 +1,9 @@
-import { LobbyHandler } from "./price-is-nice";
+import { PriceIsNiceHandler } from "./price-is-nice/priceIsNiceHandler";
 import { BackendServer } from "./server";
 
 export const server = new BackendServer();
 
-const lobbyHandler = new LobbyHandler();
+new PriceIsNiceHandler();
 
 server.addSocketHandler((socket) => {
     socket.on("getTime", () => {

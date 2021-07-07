@@ -1,8 +1,8 @@
 import { server } from "..";
-import { GuessInformation } from "./guessInformation";
-import { Lobby, LobbyStatus } from "./lobby";
+import { GuessInformation } from "./models/guessInformation";
+import { Lobby, LobbyStatus } from "./models/lobby";
 
-export class LobbyHandler {
+export class PriceIsNiceHandler {
 
     lobbies: Lobby[] = [];
 
