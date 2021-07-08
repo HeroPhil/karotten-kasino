@@ -8,14 +8,11 @@ import { PriceIsNiceService } from 'src/app/services/price-is-nice.service';
   templateUrl: './join-lobby.component.html',
   styleUrls: ['./join-lobby.component.css']
 })
-export class JoinLobbyComponent implements OnInit {
+export class JoinLobbyComponent {
 
   constructor(private priceIsNiceService: PriceIsNiceService, private formBuilder: FormBuilder, private router: Router) { }
 
   joinForm = this.formBuilder.group({ lobbyCode: "", displayName: "" });
-
-  ngOnInit(): void {
-  }
 
   onSubmit(): void {
     this.priceIsNiceService.joinLobby(this.joinForm.value.lobbyCode, this.joinForm.value.displayName, () => {

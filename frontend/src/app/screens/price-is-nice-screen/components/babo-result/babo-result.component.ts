@@ -6,12 +6,10 @@ import { PriceIsNiceService } from 'src/app/services/price-is-nice.service';
   templateUrl: './babo-result.component.html',
   styleUrls: ['./babo-result.component.css']
 })
-export class BaboResultComponent implements OnInit {
+export class BaboResultComponent {
 
   constructor(private priceIsNiceService: PriceIsNiceService) { }
 
-  ngOnInit(): void {
-  }
 
   onSubmit(){
     this.priceIsNiceService.closeRound();
