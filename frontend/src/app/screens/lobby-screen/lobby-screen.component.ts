@@ -5,11 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './lobby-screen.component.html',
   styleUrls: ['./lobby-screen.component.css']
 })
-export class LobbyScreenComponent implements OnInit {
+export class LobbyScreenComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

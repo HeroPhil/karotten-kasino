@@ -7,14 +7,11 @@ import { PriceIsNiceService } from 'src/app/services/price-is-nice.service';
   templateUrl: './guess-input.component.html',
   styleUrls: ['./guess-input.component.css']
 })
-export class GuessInputComponent implements OnInit {
+export class GuessInputComponent {
 
   constructor(private priceIsNiceService: PriceIsNiceService, private formBuilder: FormBuilder) { }
 
   guessForm = this.formBuilder.group({ guessValue: 0 });
-
-  ngOnInit(): void {
-  }
 
   onSubmit(): void {
     this.priceIsNiceService.takeGuess(this.guessForm.value.guessValue);

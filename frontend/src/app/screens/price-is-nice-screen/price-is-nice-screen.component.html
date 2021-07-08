@@ -19,16 +19,16 @@
                     <p-splitter [panelSizes]="[70,30]">
                         <ng-template pTemplate>
                             <div class="p-col p-d-flex p-jc-center">
-                                <guess-information [hidden]="!(lobbyStatus == 2 || lobbyStatus == 3)">
+                                <guess-information [hidden]="!(lobbyStatus === 2 || lobbyStatus === 3)">
                                 </guess-information>
-                                <babo-input [hidden]="!(isBabo && lobbyStatus == 1)"></babo-input>
-                                <guess-result [hidden]="!(lobbyStatus == 3)"></guess-result>
+                                <babo-input [hidden]="!(isBabo && lobbyStatus === 1)"></babo-input>
+                                <guess-result [hidden]="!(lobbyStatus === 3)"></guess-result>
                             </div>
                         </ng-template>
                         <ng-template pTemplate>
                             <div class="p-col p-d-flex p-jc-center">
-                                <guess-input [hidden]="!(!isBabo && lobbyStatus == 2)"></guess-input>
-                                <babo-result [hidden]="!(isBabo && lobbyStatus == 3)"></babo-result>
+                                <guess-input [hidden]="!(!isBabo && lobbyStatus === 2)"></guess-input>
+                                <babo-result [hidden]="!(isBabo && lobbyStatus === 3)"></babo-result>
                             </div>
                         </ng-template>
                     </p-splitter>

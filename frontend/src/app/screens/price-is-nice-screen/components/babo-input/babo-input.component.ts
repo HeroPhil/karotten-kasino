@@ -7,7 +7,7 @@ import { PriceIsNiceService } from 'src/app/services/price-is-nice.service';
   templateUrl: './babo-input.component.html',
   styleUrls: ['./babo-input.component.css']
 })
-export class BaboInputComponent implements OnInit {
+export class BaboInputComponent {
 
   // imageUrls = [];
 
@@ -20,8 +20,6 @@ export class BaboInputComponent implements OnInit {
 
   constructor(private priceIsNiceService: PriceIsNiceService, private formBuilder: FormBuilder) { }
 
-  ngOnInit(): void {
-  }
 
   onSubmit() {
     this.priceIsNiceService.submitGuessInformation(this.guessInformationForm.value);
