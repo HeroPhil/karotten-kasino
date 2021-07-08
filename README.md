@@ -10,6 +10,7 @@ DHBW Mannheim - WWI19seb
 
 [Try It Out!](http://karottenkasino-env.eba-rvubzfqc.eu-central-1.elasticbeanstalk.com/)
 
+There are more files for the project specification in this [Google Drive Folder](https://drive.google.com/drive/folders/1Q7mNMJRtU8z5j1ntx_IXsd-nLDsgmvxS). The folder includes: Product Vision Board, User Story Map, Requirements Engineering, Riskanalysis and other files.
 ## Games
 Currently the Kasino features the following games:
 
