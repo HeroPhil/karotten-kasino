@@ -1,5 +1,4 @@
 # karotten-kasino
-Unter folgendem [Google Drive Link](https://drive.google.com/drive/folders/1Q7mNMJRtU8z5j1ntx_IXsd-nLDsgmvxS) sind weitere Dateien zur Spezifikation des Projektes zu finden. Hierzu zählen unter anderem: Product Vision Board, User Story Map, Requirements Engineering & Risikoanalyse.
 
 # Angular
 
