@@ -1,0 +1,20 @@
+<h2 class="gameTitle">Der Preis ist nice</h2>
+<div class="p-grid">
+    <div class="p-col-6 p-offset-4">
+        <form [formGroup]="joinForm" (ngSubmit)="onSubmit()">
+
+            <span class="p-float-label">
+                <input id="float-input" class="p-inputtext-lg" type="text" formControlName="lobbyCode" pInputText>
+                <label for="float-input">Lobby Code</label>
+            </span>
+            <span class="p-float-label">
+                <input id="float-input" class="p-inputtext-lg" type="text" formControlName="displayName" pInputText>
+                <label for="float-input">Username</label>
+            </span>
+            <div>
+                <p-button label="Play" icon="pi pi-play" iconPos="left" type="submit" styleClass="p-button-lg"></p-button>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LandingScreenComponent } from './landing-screen.component';
+import { ContactScreenComponent } from './contact-screen.component';
 
-describe('LandingScreenComponent', () => {
-  let component: LandingScreenComponent;
-  let fixture: ComponentFixture<LandingScreenComponent>;
+describe('ContactScreenComponent', () => {
+  let component: ContactScreenComponent;
+  let fixture: ComponentFixture<ContactScreenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LandingScreenComponent ]
+      declarations: [ ContactScreenComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LandingScreenComponent);
+    fixture = TestBed.createComponent(ContactScreenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,29 +1,22 @@
 # karotten-kasino
 
-# Angular
+> Kein Kasino für Karotten sondern von Karotten.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.3.
+A student projekt using node, socket.io and angular.
 
-## Development server
+Developed by *Karotten Kameraden*: Christian Bettermann | Christoph Fischer | Philip Herold | Michael Kaiser | Nicklas Platz
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+DHBW Mannheim - WWI19seb
 
-## Code scaffolding
+[Try It Out!](http://karottenkasino-env.eba-rvubzfqc.eu-central-1.elasticbeanstalk.com/)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+There are more files for the project specification in this [Google Drive Folder](https://drive.google.com/drive/folders/1Q7mNMJRtU8z5j1ntx_IXsd-nLDsgmvxS). The folder includes: Product Vision Board, User Story Map, Requirements Engineering, Riskanalysis and other files.
+## Games
+Currently the Kasino features the following games:
 
-## Build
+### Price is nice
+The price guessing multiplayer game based upon the video series by [pietsmiet](https://www.youtube.com/playlist?list=PL5JK9SjdCJp-lOboI8iBv81KH52QVWUVV)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Dev-Setup
+Just run `npm run setup` in project root.
+The folders named `backend` and `frontend` should be self explanatory

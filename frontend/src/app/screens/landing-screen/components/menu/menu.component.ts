@@ -10,24 +10,30 @@ import { MenuItem, PrimeIcons } from 'primeng/api';
 export class MenuComponent implements OnInit {
 
   items!: MenuItem[];
+  activeItem!: MenuItem;
 
   constructor() { }
 
   ngOnInit(): void {
     this.items = [
       {
-        label: "Games",
-        icon: PrimeIcons.COMPASS,
+        label: "Home",
+        icon: PrimeIcons.HOME,
+        routerLink: "/"
       },
       {
-        label: "Scoreboard",
-        icon: PrimeIcons.BARS,
+        label: "Games",
+        icon: PrimeIcons.COMPASS,
+        routerLink: "/game-overview"
       },
       {
         label: "Contact",
         icon: PrimeIcons.PHONE,
+        routerLink: "/contact"
       }
     ];
+
+    this.activeItem = this.items[0];
   }
 
 

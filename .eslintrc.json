@@ -16,5 +16,9 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "semi": [
+            "warn",
+            "always"
+        ]
     }
 }

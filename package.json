@@ -5,10 +5,15 @@
   "main": "backend/out/index.js",
   "scripts": {
     "start": "node .",
-    "build": "npm run lint && tsc",
-    "lint": "eslint backend/src/*.ts",
+    "preview": "npm run build && npm run start",
+    "build": "npm run build-backend && npm run build-frontend",
+    "build-backend": "npm run lint-backend && tsc",
+    "build-frontend": "npm run lint-frontend && npm run dist",
     "dist": "cd frontend && ng build",
-    "preview": "npm run build && npm run dist && npm run start"
+    "lint": "npm run lint-backend && npm run lint-frontend",
+    "lint-backend": "eslint backend/src/*.ts",
+    "lint-frontend": "cd frontend && ng lint",
+    "setup": "npm install && cd frontend && npm install --force"
   },
   "repository": {
     "type": "git",

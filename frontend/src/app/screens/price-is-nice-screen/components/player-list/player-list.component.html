@@ -1,0 +1,8 @@
+<div *ngFor="let player of players">
+    <p>
+        <span *ngIf="player.isBabo"> 
+            <img src="./assets/images/crown.png"> 
+        </span> {{ player.displayName }}
+        <span id="points"> {{ player.points }} </span>
+    </p>
+</div>

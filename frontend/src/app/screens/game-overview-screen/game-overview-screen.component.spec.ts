@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MenuComponent } from './menu.component';
+import { GameOverviewScreenComponent } from './game-overview-screen.component';
 
-describe('MenuComponent', () => {
-  let component: MenuComponent;
-  let fixture: ComponentFixture<MenuComponent>;
+describe('GameOverviewScreenComponent', () => {
+  let component: GameOverviewScreenComponent;
+  let fixture: ComponentFixture<GameOverviewScreenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MenuComponent ]
+      declarations: [ GameOverviewScreenComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MenuComponent);
+    fixture = TestBed.createComponent(GameOverviewScreenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,16 @@
+<h3>{{ guessInformation.name }}</h3>
+
+<h3> Preis: {{ guessInformation.price ?? "???" }} €</h3>
+
+<p *ngIf="guessInformation.description !== undefined">{{ guessInformation.description }}</p>
+<!-- Styling mit quadratischem Rahmen-->
+<p-carousel [value]="guessInformation.imageUrls ?? []" [numVisible]="1" [numScroll]="1" [circular]="true">
+    <ng-template let-imageUrl pTemplate="item">
+        <div class="sliderContainer">
+            <div class="p-mb-3">
+                <img src="{{ imageUrl }}" class="productImages">
+            </div>
+        </div>
+
+    </ng-template>
+</p-carousel>
