@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { LobbyService } from 'src/app/services/lobby.service';
+import { PriceIsNiceService } from 'src/app/services/price-is-nice.service';
 
 @Component({
   selector: 'babo-input',
@@ -18,13 +18,13 @@ export class BaboInputComponent implements OnInit {
     imageUrls: [],
   });
 
-  constructor(private lobbyService: LobbyService, private formBuilder: FormBuilder) { }
+  constructor(private priceIsNiceService: PriceIsNiceService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    this.lobbyService.submitGuessInformation(this.guessInformationForm.value);
+    this.priceIsNiceService.submitGuessInformation(this.guessInformationForm.value);
     this.guessInformationForm.reset();
     this.guessInformationForm.value.imageUrls = [];
   }

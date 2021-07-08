@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BaboInputComponent } from './babo-input.component';
+import { GameOverviewScreenComponent } from './game-overview-screen.component';
 
-describe('BaboInputComponent', () => {
-  let component: BaboInputComponent;
-  let fixture: ComponentFixture<BaboInputComponent>;
+describe('GameOverviewScreenComponent', () => {
+  let component: GameOverviewScreenComponent;
+  let fixture: ComponentFixture<GameOverviewScreenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BaboInputComponent ]
+      declarations: [ GameOverviewScreenComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BaboInputComponent);
+    fixture = TestBed.createComponent(GameOverviewScreenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

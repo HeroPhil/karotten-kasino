@@ -1,8 +1,8 @@
 import { server } from "..";
-import { GuessInformation } from "./guessInformation";
-import { Lobby, LobbyStatus } from "./lobby";
+import { GuessInformation } from "./models/guessInformation";
+import { Lobby, LobbyStatus } from "./models/lobby";
 
-export class LobbyHandler {
+export class PriceIsNiceHandler {
 
     lobbies: Lobby[] = [];
 
@@ -33,7 +33,7 @@ export class LobbyHandler {
                 isBabo: (player.id == lobby!.baboId),
                 points: player.points,
             }
-        }));
+        }).sort((a, b) => a.isBabo ? -1 : (b.isBabo ? 1 : b.points - a.points)));
     }
 
     crownNewBabo(lobby: Lobby) {
@@ -222,7 +222,8 @@ export class LobbyHandler {
 
                     this.advanceLobby(currentLobby); // to 2
 
-                    server.io.to(currentLobby.id).emit("guessInformation", currentLobby.currentGuessInformation.getNonSensitiveInformation());
+                    socket.to(currentLobby.id).emit("guessInformation", currentLobby.currentGuessInformation.getNonSensitiveInformation());
+                    socket.emit("guessInformation", currentLobby.currentGuessInformation.getAllInformation());
 
                 }
 

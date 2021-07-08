@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GuessResultComponent } from './guess-result.component';
+import { ContactScreenComponent } from './contact-screen.component';
 
-describe('GuessResultComponent', () => {
-  let component: GuessResultComponent;
-  let fixture: ComponentFixture<GuessResultComponent>;
+describe('ContactScreenComponent', () => {
+  let component: ContactScreenComponent;
+  let fixture: ComponentFixture<ContactScreenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GuessResultComponent ]
+      declarations: [ ContactScreenComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GuessResultComponent);
+    fixture = TestBed.createComponent(ContactScreenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -4,7 +4,7 @@ import { Socket } from 'ngx-socket-io';
 @Injectable({
   providedIn: 'root'
 })
-export class LobbyService {
+export class PriceIsNiceService {
 
   joinCallback: (() => any) | undefined = undefined;
 
@@ -16,6 +16,8 @@ export class LobbyService {
       }
     });
   }
+
+  lobbyCode: string|undefined;
 
   players = this.socket.fromEvent<PlayerListEntry[]>("playerList");
   isBabo = this.socket.fromEvent<boolean>("youAreBabo");
@@ -29,6 +31,7 @@ export class LobbyService {
   joinLobby(lobbyCode: string, displayName: string, callback: () => any) {
     this.socket.emit("joinLobby", { lobbyCode: lobbyCode, displayName: displayName });
     this.joinCallback = callback;
+    this.lobbyCode = lobbyCode;
   }
 
   takeGuess(guessValue: number) {

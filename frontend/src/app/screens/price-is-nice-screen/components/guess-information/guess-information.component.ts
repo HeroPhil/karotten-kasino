@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GuessInformation, LobbyService } from 'src/app/services/lobby.service';
+import { GuessInformation, PriceIsNiceService } from 'src/app/services/price-is-nice.service';
 
 @Component({
   selector: 'guess-information',
@@ -13,10 +13,10 @@ export class GuessInformationComponent implements OnInit {
     price: "???",
   };
 
-  constructor(private lobbyService: LobbyService) { }
+  constructor(private priceIsNiceService: PriceIsNiceService) { }
 
   ngOnInit(): void {
-    this.lobbyService.guessInformation.subscribe((data) => {
+    this.priceIsNiceService.guessInformation.subscribe((data) => {
       this.guessInformation = data;
     });
   }

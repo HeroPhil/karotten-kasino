@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LobbyService } from 'src/app/services/lobby.service';
+import { PriceIsNiceService } from 'src/app/services/price-is-nice.service';
 
 @Component({
   selector: 'babo-result',
@@ -8,13 +8,13 @@ import { LobbyService } from 'src/app/services/lobby.service';
 })
 export class BaboResultComponent implements OnInit {
 
-  constructor(private lobbyService: LobbyService) { }
+  constructor(private priceIsNiceService: PriceIsNiceService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(){
-    this.lobbyService.closeRound();
+    this.priceIsNiceService.closeRound();
   }
 
 }

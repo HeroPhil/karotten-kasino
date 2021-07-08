@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GuessResult, LobbyService } from 'src/app/services/lobby.service';
+import { GuessResult, PriceIsNiceService } from 'src/app/services/price-is-nice.service';
 
 @Component({
   selector: 'guess-result',
@@ -11,10 +11,10 @@ export class GuessResultComponent implements OnInit {
   cols: any[] = [];
   results: GuessResult[] = [];
 
-  constructor(private lobbyService: LobbyService) { }
+  constructor(private priceIsNiceService: PriceIsNiceService) { }
 
   ngOnInit(): void {
-    this.lobbyService.guessResults.subscribe((results) => {
+    this.priceIsNiceService.guessResults.subscribe((results) => {
       this.results = results.sort((a, b) =>
         a.guessDelta - b.guessDelta
       );

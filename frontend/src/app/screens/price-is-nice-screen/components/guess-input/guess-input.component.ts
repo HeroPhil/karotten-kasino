@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { LobbyService } from 'src/app/services/lobby.service';
+import { PriceIsNiceService } from 'src/app/services/price-is-nice.service';
 
 @Component({
   selector: 'guess-input',
@@ -9,7 +9,7 @@ import { LobbyService } from 'src/app/services/lobby.service';
 })
 export class GuessInputComponent implements OnInit {
 
-  constructor(private lobbyService: LobbyService, private formBuilder: FormBuilder) { }
+  constructor(private priceIsNiceService: PriceIsNiceService, private formBuilder: FormBuilder) { }
 
   guessForm = this.formBuilder.group({ guessValue: 0 });
 
@@ -17,7 +17,7 @@ export class GuessInputComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.lobbyService.takeGuess(this.guessForm.value.guessValue);
+    this.priceIsNiceService.takeGuess(this.guessForm.value.guessValue);
     this.guessForm.reset();
   }
 

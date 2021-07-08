@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LobbyService } from 'src/app/services/lobby.service';
+import { PriceIsNiceService } from 'src/app/services/price-is-nice.service';
 
 @Component({
   selector: 'join-lobby',
@@ -10,7 +10,7 @@ import { LobbyService } from 'src/app/services/lobby.service';
 })
 export class JoinLobbyComponent implements OnInit {
 
-  constructor(private lobbyService: LobbyService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private priceIsNiceService: PriceIsNiceService, private formBuilder: FormBuilder, private router: Router) { }
 
   joinForm = this.formBuilder.group({ lobbyCode: "", displayName: "" });
 
@@ -18,7 +18,7 @@ export class JoinLobbyComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.lobbyService.joinLobby(this.joinForm.value.lobbyCode, this.joinForm.value.displayName, () => {
+    this.priceIsNiceService.joinLobby(this.joinForm.value.lobbyCode, this.joinForm.value.displayName, () => {
       this.router.navigate(["/price-is-nice"]);
     }); // TODO validate input
   }
