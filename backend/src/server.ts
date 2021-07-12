@@ -1,6 +1,7 @@
 import express from "express";
 import http from "http";
 import { Server, Socket } from "socket.io";
+import { createProxyMiddleware, Filter, Options, RequestHandler } from 'http-proxy-middleware';
 
 export class BackendServer {
     app = express();
@@ -8,7 +9,7 @@ export class BackendServer {
     private socketHandlers: ((socket: Socket) => void)[] = [];
     io!: Server;
 
-     start(): void {
+    start(): void {
         this.app.use(express.static(process.cwd() + "/frontend/dist/karotten-kasino"));
 
         this.app.set('port', this.port);
@@ -16,6 +17,15 @@ export class BackendServer {
         this.app.get('/', (req, res) => {
             res.sendFile(process.cwd() + "/frontend/dist/karotten-kasino");
         });
+
+        this.app.use('/amazon', createProxyMiddleware(
+            {
+                target: "https://www.amazon.de",
+                changeOrigin: true,
+                pathRewrite: {
+                    [`^/amazon`]: '',
+                },
+            }));
 
         const server = http.createServer(this.app);
 

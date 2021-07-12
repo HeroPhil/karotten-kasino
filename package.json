@@ -27,6 +27,7 @@
   "homepage": "https://github.com/HeroPhil/karotten-kasino#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "http-proxy-middleware": "^2.0.1",
     "node-fetch": "^2.6.1",
     "node-html-parser": "^3.3.6",
     "socket.io": "^4.1.2"
