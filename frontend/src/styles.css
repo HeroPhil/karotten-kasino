@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+
 html {
-    padding: var(--content-padding);
     background-color: var(--surface-300);
     color: var(--text-color);
     font-family: var(--font-family);
@@ -17,4 +17,3 @@ html {
     color: var(--primary-color);
     font-size: 4.5rem;
 }
-

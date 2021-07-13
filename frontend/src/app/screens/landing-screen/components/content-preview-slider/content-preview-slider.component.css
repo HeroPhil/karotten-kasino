@@ -30,12 +30,6 @@
     bottom: 0px;
 }
 
-.contentContainer {
-    display: flex;
-    justify-content: center;
-    bottom: 0px;
-}
-
 div {
     display: inline-block;
     overflow: hidden;
