@@ -208,11 +208,6 @@ export class PriceIsNiceHandler {
 
                 if (currentLobby.getLobbyStatus() == LobbyStatus.roundStart && socket.id == currentLobby.baboId) {
 
-                    console.log(args.price);
-                    console.log(args.name);
-                    console.log(args.description);
-                    console.log(args.imageUrls);
-
                     currentLobby.currentGuessInformation = new GuessInformation(
                         args.price,
                         args.name,
