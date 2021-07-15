@@ -70,8 +70,8 @@ const config: SocketIoConfig = {
     ToastModule,
     ChipsModule,
     SplitterModule,
-    SidebarModule
-    DialogModule,
+    SidebarModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
