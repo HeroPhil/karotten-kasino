@@ -23,9 +23,7 @@ export class WebcrawlerService {
     const response = await fetch(url, {
       mode: "cors"
     });
-    console.log(response);
     const text = await response.text();
-    console.log(text);
     const terms = parse(text);
     
     return {
