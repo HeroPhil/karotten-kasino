@@ -28,6 +28,7 @@ import { ChipsModule } from 'primeng/chips';
 import { SplitterModule } from 'primeng/splitter';
 import { ContactScreenComponent } from './screens/contact-screen/contact-screen.component';
 import { GameOverviewScreenComponent } from './screens/game-overview-screen/game-overview-screen.component';
+import {SidebarModule} from 'primeng/sidebar';
 import { DialogModule } from 'primeng/dialog';
 
 
@@ -69,7 +70,8 @@ const config: SocketIoConfig = {
     ToastModule,
     ChipsModule,
     SplitterModule,
-    DialogModule,
+    SidebarModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

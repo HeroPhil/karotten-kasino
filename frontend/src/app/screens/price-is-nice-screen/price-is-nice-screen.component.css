@@ -1,0 +1,22 @@
+#PIN-Header {
+    min-height: 3.75rem;
+}
+
+.box {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.header {
+    flex: 0 1 3.75rem;
+}
+
+.dialogContainer {
+    flex: 1 1 auto;
+}
+
+.dialogInputs {
+    display: flex;
+    justify-content: center;
+}

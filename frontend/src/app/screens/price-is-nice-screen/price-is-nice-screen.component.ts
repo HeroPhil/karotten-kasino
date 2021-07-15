@@ -13,6 +13,7 @@ export class PriceIsNiceScreenComponent implements OnInit {
   lobbyStatus = 0;
   isBabo = false;
   lobbyCode: string|undefined;
+  display = true;
 
   constructor(private priceIsNiceService: PriceIsNiceService, private messageService: MessageService) { }
 
