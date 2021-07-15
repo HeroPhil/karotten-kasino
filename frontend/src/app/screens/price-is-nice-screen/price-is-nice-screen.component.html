@@ -1,25 +1,41 @@
 <p-toast key="tr-toast" position="top-right"></p-toast>
 <p-toast key="bc-toast" position="bottom-center"></p-toast>
 
-<div>
 
+
+<div class="box">
+    <div class="p-grid p-jc-between header" id="PIN-Header">
+
+        <div class="p-col-12 p-md-3 p-lg-3" [hidden]="!display">
+            <p-sidebar [(visible)]="display" [style]="{width:'25%'}" [modal]=" false" [dismissible]="false" [closeOnEscape]="false" [baseZIndex]="9999">
+                <player-list></player-list>
+            </p-sidebar>
+        </div>
+
+        <div class="p-col-12 p-md-3 p-lg-3" [hidden]="display">
+            <p-button type="text" (click)="display = true" icon="pi pi-plus" label="Players List" [hidden]="display"></p-button>
+        </div>
+
+        <div class="p-col-12 p-md-6 p-lg-6">
+            Lobby: {{lobbyCode ?? "Lobby Code"}}
+        </div>
+        <div class="p-col-12 p-md-3 p-lg-3">
+            DER PREIS IST NICE
+        </div>
+    </div>
+
+    <div class="dialogContainer">
+        <div class="p-grid p-jc-center">
+            <div class="p-col-12 p-md-3 p-lg-3" [hidden]="!display">&nbsp;</div>
+            
+            <div class="p-col-12 p-md-9 p-lg-9 dialogInputs">
+                <guess-information [hidden]="!(lobbyStatus === 2 || lobbyStatus === 3)">
+                </guess-information>
+                <babo-input [hidden]="!(isBabo && lobbyStatus === 1)"></babo-input>
+                <guess-result [hidden]="!(lobbyStatus === 3)"></guess-result>
+                <guess-input [hidden]="!(!isBabo && lobbyStatus === 2)"></guess-input>
+                <babo-result [hidden]="!(isBabo && lobbyStatus === 3)"></babo-result>
+            </div>
+        </div>
+    </div>
 </div>
-
-<div class="p-grid p-jc-between">
-    <div class="p-col-12 p-md-4 p-lg-2">
-        <player-list></player-list>
-    </div>
-    <div class="p-col-12 p-md-4 p-lg-2">
-        {{lobbyCode ?? "Lobby Code"}}
-    </div>
-    <div class="p-col-12 p-md-4 p-lg-2">
-        DER PREIS IST NICE
-    </div>
-</div>
-
-<guess-information [hidden]="!(lobbyStatus === 2 || lobbyStatus === 3)">
-</guess-information>
-<babo-input [hidden]="!(isBabo && lobbyStatus === 1)"></babo-input>
-<guess-result [hidden]="!(lobbyStatus === 3)"></guess-result>
-<guess-input [hidden]="!(!isBabo && lobbyStatus === 2)"></guess-input>
-<babo-result [hidden]="!(isBabo && lobbyStatus === 3)"></babo-result>

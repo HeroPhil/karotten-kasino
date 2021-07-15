@@ -11,7 +11,7 @@ export class PlayerListComponent implements OnInit {
   constructor(private priceIsNiceService: PriceIsNiceService) { }
 
   players: PlayerListEntry[] = [];
-  display = true;
+  
 
   ngOnInit(): void {
     this.priceIsNiceService.players.subscribe(players => {

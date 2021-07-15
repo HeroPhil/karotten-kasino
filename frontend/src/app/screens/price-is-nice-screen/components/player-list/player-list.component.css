@@ -1,20 +1,21 @@
 img {
-    height: 2rem;
+    height: 2.6rem;
     width: auto;
 }
 
-p {
-    font-size: 1.8rem;
+div {
+    font-size: 2.4rem;
     color: var(--text-color);
 }
 
 .playerListElement {
+    display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
 .points {
     font-family: AngryBlu;
-    font-size: 2.4rem;
+    font-size: 3rem;
     color: var(--primary-color);
 }
