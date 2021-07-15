@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
 import { GuessInformation } from './price-is-nice.service';
-import { parse } from 'node-html-parser';
-import { UrlResolver } from '@angular/compiler';
+import { HTMLElement, parse } from 'node-html-parser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebcrawlerService {
 
-  constructor () {}
+  constructor() { }
 
   async getProductInformationFromAmazonUrl(url: string): Promise<GuessInformation> {
 
     const _url = new URL(url);
     _url.protocol = "http";
     _url.hostname = new URL(window.origin).hostname;
-    _url.port = new URL(window.origin).port 
+    _url.port = new URL(window.origin).port
     _url.pathname = "amazon" + _url.pathname;
 
     url = _url.toString();
@@ -25,13 +24,50 @@ export class WebcrawlerService {
     });
     const text = await response.text();
     const terms = parse(text);
-    
+
     return {
-      name: terms.querySelector('#productTitle')?.innerText,
-      price: terms.querySelector('#priceblock_ourprice')?.innerText,
-      description: terms.querySelector('#feature-bullets')?.innerText,
-      imageUrls: terms.querySelector('#altImages')?.querySelectorAll("img").map<string>((htmlElement) => htmlElement.getAttribute("src") ?? "").filter((imageUrl) => imageUrl != ""),
+      name: this.parseName(terms),
+      price: this.parsePrice(terms),
+      description: this.parseDescription(terms),
+      imageUrls: this.parseImageUrls(terms),
     };
 
   }
+
+  private parseName(terms: HTMLElement): string {
+    let result = terms.querySelector('#productTitle')?.innerText ?? "Amazon Produkt";
+    result = result.trim();
+    return result;
+  }
+
+  private parsePrice(terms: HTMLElement): string {
+    let result = terms.querySelector('#priceblock_ourprice')?.innerText ?? 0;
+    result.trim();
+    result = result.split("€", 1)[0];
+    result = result.trim();
+    result = result.replace(",", ".");
+    result = Number.parseFloat(result).toFixed(2);
+    return result;
+  }
+
+  private parseDescription(terms: HTMLElement): string {
+    let result = terms.querySelector('#feature-bullets')
+      .querySelectorAll(".a-list-item")
+      .map((htmlElement) => htmlElement.innerText.trim())
+      .reduce((previous, text) => previous += (" • " + text + "\n"));
+    return result;
+  }
+
+  private parseImageUrls(terms: HTMLElement): string[] {
+    let result = terms.querySelector('#altImages')
+      ?.querySelectorAll("img")
+      .map<string>((htmlElement) => htmlElement.getAttribute("src") ?? "")
+      .filter((imageUrl) => imageUrl != "")
+      .filter((imageUrl) => !imageUrl.includes("transparent-pixel"))
+      .map((imageUrl) => imageUrl.split(".").reduce((previous, current, index, arr) => previous += (index != arr.length - 2 ? ((index > 0 ? "." : "") + current) : "")), "");
+    return result;
+  }
+
+
+
 }
