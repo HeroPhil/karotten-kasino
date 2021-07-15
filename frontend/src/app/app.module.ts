@@ -19,16 +19,18 @@ import { PlayerListComponent } from './screens/price-is-nice-screen/components/p
 import { GuessInputComponent } from './screens/price-is-nice-screen/components/guess-input/guess-input.component';
 import { GuessResultComponent } from './screens/price-is-nice-screen/components/guess-result/guess-result.component';
 import { TableModule } from 'primeng/table';
-import {ButtonModule} from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
 import { BaboInputComponent } from './screens/price-is-nice-screen/components/babo-input/babo-input.component';
 import { BaboResultComponent } from './screens/price-is-nice-screen/components/babo-result/babo-result.component';
-import {ToastModule} from 'primeng/toast';
+import { ToastModule } from 'primeng/toast';
 import { GuessInformationComponent } from './screens/price-is-nice-screen/components/guess-information/guess-information.component';
-import {ChipsModule} from 'primeng/chips';
-import {SplitterModule} from 'primeng/splitter';
+import { ChipsModule } from 'primeng/chips';
+import { SplitterModule } from 'primeng/splitter';
 import { ContactScreenComponent } from './screens/contact-screen/contact-screen.component';
 import { GameOverviewScreenComponent } from './screens/game-overview-screen/game-overview-screen.component';
 import {SidebarModule} from 'primeng/sidebar';
+import { DialogModule } from 'primeng/dialog';
+
 
 const config: SocketIoConfig = {
   url: window.location.origin, // TODO find solution for better dev testing
@@ -52,7 +54,7 @@ const config: SocketIoConfig = {
     BaboResultComponent,
     GuessInformationComponent,
     ContactScreenComponent,
-    GameOverviewScreenComponent
+    GameOverviewScreenComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +71,7 @@ const config: SocketIoConfig = {
     ChipsModule,
     SplitterModule,
     SidebarModule
+    DialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

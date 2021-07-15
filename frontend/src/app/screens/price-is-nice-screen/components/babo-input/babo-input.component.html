@@ -1,3 +1,5 @@
+<button (click)="showImportDialog = true">Import from Amazon</button>
+
 <form [formGroup]="guessInformationForm" (ngSubmit)="onSubmit()">
 
     <span class="p-float-label">
@@ -20,3 +22,15 @@
     <button pButton type="submit">dat weede der nie errate</button>
 
 </form>
+
+
+<p-dialog header="import from Amazon" [(visible)]="showImportDialog">
+    Amazon rein und feiern.
+    <form [formGroup]="amazonImportForm" (ngSubmit)="importFromAmazon()">
+        <span class="p-float-label">
+            <input id="float-input" type="text" formControlName="targetUrl" pInputText>
+            <label for="float-input">AmazonURL</label>
+        </span>
+        <button pButton type="submit">Gönn dir</button>
+    </form>
+</p-dialog>
