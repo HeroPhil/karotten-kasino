@@ -8,9 +8,13 @@ p {
     color: var(--text-color);
 }
 
-#points {
+.playerListElement {
+    justify-content: space-between;
+    width: 100%;
+}
+
+.points {
     font-family: AngryBlu;
     font-size: 2.4rem;
     color: var(--primary-color);
-    margin-left: 2rem;
 }

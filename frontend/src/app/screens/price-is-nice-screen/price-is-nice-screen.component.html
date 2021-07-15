@@ -2,38 +2,24 @@
 <p-toast key="bc-toast" position="bottom-center"></p-toast>
 
 <div>
-    <p-splitter [style]="{'height': '80%'}" [panelSizes]="[20,80]" [minSizes]="[10,0]" styleClass="p-mb-5">
-        <ng-template pTemplate>
-            <div class="p-col p-d-flex">
-                <player-list></player-list>
-            </div>
-        </ng-template>
-        <ng-template pTemplate>
-            <p-splitter layout="vertical" [panelSizes]="[15,85]">
-                <ng-template pTemplate>
-                    <div style="flex-grow: 1;" class="p-d-flex p-ai-center p-jc-center">
-                        {{lobbyCode ?? "Lobby Code"}}
-                    </div>
-                </ng-template>
-                <ng-template pTemplate>
-                    <p-splitter [panelSizes]="[70,30]">
-                        <ng-template pTemplate>
-                            <div class="p-col p-d-flex p-jc-center">
-                                <guess-information [hidden]="!(lobbyStatus === 2 || lobbyStatus === 3)">
-                                </guess-information>
-                                <babo-input [hidden]="!(isBabo && lobbyStatus === 1)"></babo-input>
-                                <guess-result [hidden]="!(lobbyStatus === 3)"></guess-result>
-                            </div>
-                        </ng-template>
-                        <ng-template pTemplate>
-                            <div class="p-col p-d-flex p-jc-center">
-                                <guess-input [hidden]="!(!isBabo && lobbyStatus === 2)"></guess-input>
-                                <babo-result [hidden]="!(isBabo && lobbyStatus === 3)"></babo-result>
-                            </div>
-                        </ng-template>
-                    </p-splitter>
-                </ng-template>
-            </p-splitter>
-        </ng-template>
-    </p-splitter>
+
 </div>
+
+<div class="p-grid p-jc-between">
+    <div class="p-col-12 p-md-4 p-lg-2">
+        <player-list></player-list>
+    </div>
+    <div class="p-col-12 p-md-4 p-lg-2">
+        {{lobbyCode ?? "Lobby Code"}}
+    </div>
+    <div class="p-col-12 p-md-4 p-lg-2">
+        DER PREIS IST NICE
+    </div>
+</div>
+
+<guess-information [hidden]="!(lobbyStatus === 2 || lobbyStatus === 3)">
+</guess-information>
+<babo-input [hidden]="!(isBabo && lobbyStatus === 1)"></babo-input>
+<guess-result [hidden]="!(lobbyStatus === 3)"></guess-result>
+<guess-input [hidden]="!(!isBabo && lobbyStatus === 2)"></guess-input>
+<babo-result [hidden]="!(isBabo && lobbyStatus === 3)"></babo-result>

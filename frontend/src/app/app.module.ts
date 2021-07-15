@@ -28,6 +28,7 @@ import {ChipsModule} from 'primeng/chips';
 import {SplitterModule} from 'primeng/splitter';
 import { ContactScreenComponent } from './screens/contact-screen/contact-screen.component';
 import { GameOverviewScreenComponent } from './screens/game-overview-screen/game-overview-screen.component';
+import {SidebarModule} from 'primeng/sidebar';
 
 const config: SocketIoConfig = {
   url: window.location.origin, // TODO find solution for better dev testing
@@ -66,7 +67,8 @@ const config: SocketIoConfig = {
     ButtonModule,
     ToastModule,
     ChipsModule,
-    SplitterModule
+    SplitterModule,
+    SidebarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

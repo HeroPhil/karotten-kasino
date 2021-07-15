@@ -1,8 +1,16 @@
-<div *ngFor="let player of players">
-    <p>
-        <span *ngIf="player.isBabo"> 
-            <img src="./assets/images/crown.png"> 
-        </span> {{ player.displayName }}
-        <span id="points"> {{ player.points }} </span>
-    </p>
-</div>
+<p-sidebar [(visible)]="display" styleClass="p-sidebar-md" [modal]="false" [dismissible]="false" [closeOnEscape]="false" [baseZIndex]="9999">
+    Content
+    <div *ngFor="let player of players">
+        <div class="playerListElement">
+            <span>
+                {{ player.displayName }}
+                <span *ngIf="player.isBabo">
+                    <img src="./assets/images/crown.png">
+                </span>
+            </span>
+            <span class="points"> {{ player.points }} </span>
+        </div>
+    </div>
+</p-sidebar>
+
+<p-button type="text" (click)="display = true" icon="pi pi-plus" label="Players List"></p-button>
