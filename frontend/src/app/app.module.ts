@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DebugComponent } from './debug/debug.component';
 import { LandingScreenComponent } from './screens/landing-screen/landing-screen.component';
-import { MenuComponent } from './screens/landing-screen/components/menu/menu.component';
+import { MenuComponent } from './screens/landing-screen/components/menu-deprecated/menu.component';
 import { FooterComponent } from './screens/landing-screen/components/footer/footer.component';
 import { ContentPreviewSliderComponent } from './screens/landing-screen/components/content-preview-slider/content-preview-slider.component';
 import { TabMenuModule } from 'primeng/tabmenu';
