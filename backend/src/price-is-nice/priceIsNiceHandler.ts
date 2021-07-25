@@ -177,6 +177,8 @@ export class PriceIsNiceHandler {
 
                 socket.emit("takeGuessAkw");
 
+                this.publishPlayerList(currentLobby);
+
                 this.awardPointsIfAllPlayersHaveGuessed(currentLobby);
 
 
