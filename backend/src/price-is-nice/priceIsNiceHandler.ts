@@ -92,8 +92,8 @@ export class PriceIsNiceHandler {
             server.io.to(lobby.id).emit("guessResults", lobby.getPlayers().filter((player) => player.id != lobby.baboId).map(player => {
                 return {
                     displayName: player.displayName,
-                    guessValue: player.guessValue,
-                    guessDelta: player.guessDelta,
+                    guessValue: this.parseCurrency(player.guessValue ?? 0),
+                    guessDelta: this.parseCurrency(player.guessDelta ?? 0),
                     points: player.points,
                     pointsDelta: player.pointsDelta,
                 }
@@ -158,7 +158,7 @@ export class PriceIsNiceHandler {
 
         server.addSocketHandler(socket => {
             socket.on("takeGuess", (args) => {
-                const guessValue = args.guessValue;
+                const guessValue = this.parseCurrency(args.guessValue);
 
                 const currentLobby = this.getLobbyFromPlayerId(socket.id);
                 if (currentLobby == undefined || currentLobby.getLobbyStatus() != LobbyStatus.guessOpen) {
@@ -209,7 +209,7 @@ export class PriceIsNiceHandler {
                 if (currentLobby.getLobbyStatus() == LobbyStatus.roundStart && socket.id == currentLobby.baboId) {
 
                     currentLobby.currentGuessInformation = new GuessInformation(
-                        args.price,
+                        this.parseCurrency(args.price),
                         args.name,
                         args.description,
                         args.imageUrls
@@ -262,6 +262,17 @@ export class PriceIsNiceHandler {
             });
         });
 
+    }
+
+    private parseCurrency(value: string | number): number {
+        value = value.toString();
+        value = value.trim();
+        value = value.replace(',', '.');
+        value = Number.parseFloat(value);
+        value = value.toFixed(2);
+        value = Number.parseFloat(value);
+        console.log(value);
+        return value;
     }
 
 }
