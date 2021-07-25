@@ -272,7 +272,6 @@ export class PriceIsNiceHandler {
         value = Number.parseFloat(value);
         value = value.toFixed(2);
         value = Number.parseFloat(value);
-        console.log(value);
         return value;
     }
 
