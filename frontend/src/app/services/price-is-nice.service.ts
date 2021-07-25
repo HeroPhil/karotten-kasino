@@ -61,7 +61,7 @@ export interface GuessResult {
 
 export interface PlayerListEntry {
   displayName: string,
-  isBabo: boolean,
+  playerStatus: number,
   points: number,
 }
 

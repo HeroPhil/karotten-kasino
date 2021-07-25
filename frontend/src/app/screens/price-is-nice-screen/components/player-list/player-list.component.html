@@ -2,8 +2,9 @@
     <div class="playerListElement">
         <span>
             {{ player.displayName }}
-            <span *ngIf="player.isBabo">
-                <img src="./assets/images/crown.png">
+            <span>
+                <img *ngIf="player.playerStatus === 1" src="./assets/images/crown.png">
+                <p-progressSpinner *ngIf="player.playerStatus === 2"></p-progressSpinner>
             </span>
         </span>
         <span class="points"> {{ player.points }} </span>

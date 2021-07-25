@@ -1,5 +1,5 @@
 import { GuessInformation } from "./guessInformation";
-import { Player } from "./player";
+import { Player, PlayerStatus } from "./player";
 
 export enum LobbyStatus {
     roundSetup,
@@ -14,8 +14,8 @@ export class Lobby {
     public baboId: string | undefined;
     private lobbyStatus!: LobbyStatus;
     public currentGuessInformation: GuessInformation | undefined;
-    
-    constructor(public id: string) { 
+
+    constructor(public id: string) {
         this.lobbyStatus = LobbyStatus.roundStart;
     }
 
@@ -42,7 +42,7 @@ export class Lobby {
     }
 
     yeetPlayer(clientId: string) {
-        this.players.splice(this.players.findIndex((player) => player.id == clientId),1);
+        this.players.splice(this.players.findIndex((player) => player.id == clientId), 1);
     }
 
     hasPlayer(clientId: string) {
@@ -70,11 +70,41 @@ export class Lobby {
         this.baboId = this.players[(this.players.indexOf(this.getBabo()!) + 1) % this.players.length].id;
     }
 
+    getPlayerStatus(clientId: string) {
+        if (this.lobbyStatus == LobbyStatus.roundSetup) {
+            return PlayerStatus.void;
+        }
+
+        const player = this.players.find(((player) => player.id == clientId));
+
+        if (player == undefined) {
+            return;
+        }
+
+        if (player.id == this.baboId) {
+            return PlayerStatus.babo;
+        }
+
+        if (this.lobbyStatus != LobbyStatus.guessOpen) {
+            return PlayerStatus.void;
+        }
+
+        if (this.playerHasGuessedOrIsBabo(player)) {
+            return PlayerStatus.guessTaken;
+        } else {
+            return PlayerStatus.guessing;
+        }
+    }
+
+    playerHasGuessedOrIsBabo(player: Player) {
+        return !(player.guessValue == undefined && player.id != this.baboId);
+    }
+
     allPlayersHaveGuessed(): boolean {
         for (const player of this.players) {
-            if (player.guessValue == undefined && player.id != this.baboId) {
+            if (!this.playerHasGuessedOrIsBabo(player)) {
                 return false;
-            }
+            };
         }
         return true;
     }

@@ -1,6 +1,7 @@
 import { server } from "..";
 import { GuessInformation } from "./models/guessInformation";
 import { Lobby, LobbyStatus } from "./models/lobby";
+import { PlayerStatus } from "./models/player";
 
 export class PriceIsNiceHandler {
 
@@ -23,6 +24,7 @@ export class PriceIsNiceHandler {
                 lobby.advanceLobbyStatus();
             }
             server.io.to(lobby.id).emit("lobbyStatus", lobby.getLobbyStatus());
+            this.publishPlayerList(lobby);
         }
     }
 
@@ -30,10 +32,10 @@ export class PriceIsNiceHandler {
         server.io.in(lobby.id).emit("playerList", lobby.getPlayers().map((player) => {
             return {
                 displayName: player.displayName,
-                isBabo: (player.id == lobby!.baboId),
+                playerStatus: lobby!.getPlayerStatus(player.id),
                 points: player.points,
             }
-        }).sort((a, b) => a.isBabo ? -1 : (b.isBabo ? 1 : b.points - a.points)));
+        }).sort((a, b) => a.playerStatus == PlayerStatus.babo ? -1 : (b.playerStatus == PlayerStatus.babo ? 1 : b.points - a.points)));
     }
 
     crownNewBabo(lobby: Lobby) {
@@ -98,7 +100,6 @@ export class PriceIsNiceHandler {
                     pointsDelta: player.pointsDelta,
                 }
             }));
-            this.publishPlayerList(lobby);
 
             server.io.to(lobby.id).emit("guessInformation", lobby.currentGuessInformation!.getAllInformation());
 

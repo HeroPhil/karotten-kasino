@@ -30,6 +30,7 @@ import { ContactScreenComponent } from './screens/contact-screen/contact-screen.
 import { GameOverviewScreenComponent } from './screens/game-overview-screen/game-overview-screen.component';
 import {SidebarModule} from 'primeng/sidebar';
 import { DialogModule } from 'primeng/dialog';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 
 const config: SocketIoConfig = {
@@ -71,7 +72,8 @@ const config: SocketIoConfig = {
     ChipsModule,
     SplitterModule,
     SidebarModule,
-    DialogModule
+    DialogModule,
+    ProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
