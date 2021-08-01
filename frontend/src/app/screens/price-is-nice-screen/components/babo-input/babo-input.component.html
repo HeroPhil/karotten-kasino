@@ -1,36 +1,43 @@
-<button (click)="showImportDialog = true">Import from Amazon</button>
+<div class="fc" id="amazonImport">
+    <button pButton (click)="showImportDialog = true">Import from Amazon</button>
+</div>
 
-<form [formGroup]="guessInformationForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="guessInformationForm" (ngSubmit)="onSubmit()" id="baboInput" class="fc">
 
-    <span class="p-float-label">
-        <input id="float-input" type="text" formControlName="price" pInputText>
-        <label for="float-input">Münzen</label>
+    <span class="p-float-label fc">
+        <input id="float-input-price" type="text" formControlName="price" pInputText>
+        <label for="float-input-price">Münzen</label>
     </span>
 
-    <span class="p-float-label">
-        <input id="float-input" type="text" formControlName="name" pInputText>
-        <label for="float-input">Name</label>
+    <span class="p-float-label fc">
+        <input id="float-input-name" type="text" formControlName="name" pInputText>
+        <label for="float-input-name">Name</label>
     </span>
 
-    <span class="p-float-label">
-        <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize" name="description" ngModel></textarea>
-        <label for="float-input">Beschreibung</label>
+    <span class="p-float-label fc">
+        <!-- <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize" name="description" ngModel class="p-inputtext" id="float-input-description"></textarea> -->
+        <textarea rows="10" cols="75" pInputTextarea autoResize="autoResize" name="description" ngModel class="p-inputtext" id="float-input-description"></textarea>
+        <label for="float-input-description">Beschreibung</label>
     </span>
 
-    <p-chips name="imageUrls" ngModel separator=" "></p-chips>
+    <span class="p-float-label fc">
+        <p-chips id="float-input-images" name="imageUrls" ngModel separator=" "></p-chips>
+        <label for="float-input-images">Bilder Urls</label>
+    </span>
 
-    <button pButton type="submit">dat weede der nie errate</button>
+    <!-- <p-chips name="imageUrls" ngModel separator=" "></p-chips> -->
+
+    <button pButton type="submit">Dat weede der nie errate</button>
 
 </form>
 
 
-<p-dialog header="import from Amazon" [(visible)]="showImportDialog">
-    Amazon rein und feiern.
+<p-dialog header="Amazon rein und feiern" [(visible)]="showImportDialog">
     <form [formGroup]="amazonImportForm" (ngSubmit)="importFromAmazon()">
         <span class="p-float-label">
-            <input id="float-input" type="text" formControlName="targetUrl" pInputText>
-            <label for="float-input">AmazonURL</label>
+            <input id="float-input-amazonUrl" type="text" formControlName="targetUrl" pInputText>
+            <label for="float-input-amazonUrl">AmazonURL</label>
         </span>
-        <button pButton type="submit">Gönn dir</button>
+        <button pButton type="submit" id="submitInput">Lad ren de Driss</button>
     </form>
 </p-dialog>

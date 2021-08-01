@@ -8,6 +8,7 @@
 
         <div class="p-col-12 p-md-3 p-lg-3" [hidden]="!display">
             <p-sidebar [(visible)]="display" [style]="{width:'25%'}" [modal]=" false" [dismissible]="false" [closeOnEscape]="false" [baseZIndex]="9999">
+                <a href="" class="homeText">KarottenKasino</a>
                 <player-list></player-list>
             </p-sidebar>
         </div>
@@ -16,10 +17,10 @@
             <p-button type="text" (click)="display = true" icon="pi pi-plus" label="Players List" [hidden]="display"></p-button>
         </div>
 
-        <div class="p-col-12 p-md-6 p-lg-6">
+        <div class="p-col-12 p-md-6 p-lg-6" id="lobbyCode">
             Lobby: {{lobbyCode ?? "Lobby Code"}}
         </div>
-        <div class="p-col-12 p-md-3 p-lg-3">
+        <div class="p-col-12 p-md-3 p-lg-3" id="gameName">
             DER PREIS IST NICE
         </div>
     </div>

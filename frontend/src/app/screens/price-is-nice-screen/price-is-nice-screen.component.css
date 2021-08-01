@@ -20,3 +20,29 @@
     display: flex;
     justify-content: center;
 }
+
+#lobbyCode {
+    text-align: center;
+    font-family: AngryBlu;
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    padding: 1rem;
+}
+
+#gameName {
+    text-align: right;
+    font-family: AngryBlu;
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    padding: 1rem;
+}
+
+.homeText {
+    text-decoration: none;
+    font-family: sketch;
+    color: var(--primary-color);
+    font-size: 3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
