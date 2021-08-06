@@ -43,4 +43,9 @@ export class BaboInputComponent {
     this.isLoading = false;
   }
 
+  closingDialog() {
+    this.amazonImportForm.reset();
+    this.isLoading = false;
+  }
+
 }

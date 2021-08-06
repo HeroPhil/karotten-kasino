@@ -36,5 +36,6 @@
             <label for="float-input-amazonUrl">AmazonURL</label>
         </span>
         <button pButton type="submit" id="submitInput" label="Import" [loading]="isLoading"></button>
+        <button pButton *ngIf="isLoading" type="button" label="Abbrechen" (click)="closingDialog()"></button>
     </form>
 </p-dialog>
