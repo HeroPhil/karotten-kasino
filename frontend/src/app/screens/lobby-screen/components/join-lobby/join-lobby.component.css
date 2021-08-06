@@ -3,3 +3,13 @@
     margin-top: 1.6rem;
     margin-bottom: 1.6rem;
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+#playbutton {
+    display: flex;
+    justify-content: center;
+}

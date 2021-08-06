@@ -1,20 +1,19 @@
 <h2 class="gameTitle">Der Preis ist nice</h2>
-<div class="p-grid">
-    <div class="p-col-6 p-offset-4">
-        <form [formGroup]="joinForm" (ngSubmit)="onSubmit()" ngNativeValidate>
+<div class="container">
+    <form [formGroup]="joinForm" (ngSubmit)="onSubmit()" ngNativeValidate>
+        <span class="p-float-label">
+            <input pInputText id="float-input" class="p-inputtext-lg" type="text" formControlName="lobbyCode"
+                maxlength="16" pattern="[A-Za-z0-9]+" required>
+            <label for="float-input">Lobby Code</label>
+        </span>
+        <span class="p-float-label">
+            <input pInputText id="float-input" class="p-inputtext-lg" type="text" formControlName="displayName"
+                maxlength="16" pattern="[A-Za-z0-9]+" required>
+            <label for="float-input">Username</label>
+        </span>
+        <div id="playbutton">
+            <p-button label="Play" icon="pi pi-play" iconPos="left" type="submit" styleClass="p-button-lg"></p-button>
+        </div>
 
-            <span class="p-float-label">
-                <input pInputText id="float-input" class="p-inputtext-lg" type="text" formControlName="lobbyCode" maxlength="16" pattern="[A-Za-z0-9]+" required>
-                <label for="float-input">Lobby Code</label>
-            </span>
-            <span class="p-float-label">
-                <input pInputText id="float-input" class="p-inputtext-lg" type="text" formControlName="displayName" maxlength="16" pattern="[A-Za-z0-9]+" required>
-                <label for="float-input">Username</label>
-            </span>
-            <div>
-                <p-button label="Play" icon="pi pi-play" iconPos="left" type="submit" styleClass="p-button-lg"></p-button>
-            </div>
-
-        </form>
-    </div>
+    </form>
 </div>
