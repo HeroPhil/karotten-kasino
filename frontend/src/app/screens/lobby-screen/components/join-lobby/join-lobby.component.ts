@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { PriceIsNiceService } from 'src/app/services/price-is-nice.service';
 
 @Component({
-  selector: 'join-lobby',
+  selector: 'app-join-lobby',
   templateUrl: './join-lobby.component.html',
   styleUrls: ['./join-lobby.component.css']
 })

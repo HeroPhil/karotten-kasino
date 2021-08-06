@@ -7,7 +7,7 @@ interface GameInformation {
 }
 
 @Component({
-  selector: 'landingScreen-content-preview-slider',
+  selector: 'app-landing-screen-content-preview-slider',
   templateUrl: './content-preview-slider.component.html',
   styleUrls: ['./content-preview-slider.component.css']
 })

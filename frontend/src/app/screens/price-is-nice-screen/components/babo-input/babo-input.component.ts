@@ -4,11 +4,11 @@ import { PlayerListEntry, PriceIsNiceService } from 'src/app/services/price-is-n
 import { WebcrawlerService } from 'src/app/services/webcrawler.service';
 
 @Component({
-  selector: 'babo-input',
+  selector: 'app-babo-input',
   templateUrl: './babo-input.component.html',
   styleUrls: ['./babo-input.component.css']
 })
-export class BaboInputComponent {
+export class BaboInputComponent implements OnInit {
 
   showImportDialog = false;
   isLoading = false;

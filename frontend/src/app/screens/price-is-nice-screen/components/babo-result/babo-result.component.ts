@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PriceIsNiceService } from 'src/app/services/price-is-nice.service';
 
 @Component({
-  selector: 'babo-result',
+  selector: 'app-babo-result',
   templateUrl: './babo-result.component.html',
   styleUrls: ['./babo-result.component.css']
 })

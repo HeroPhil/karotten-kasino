@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PriceIsNiceService, PlayerListEntry } from 'src/app/services/price-is-nice.service';
 
 @Component({
-  selector: 'player-list',
+  selector: 'app-player-list',
   templateUrl: './player-list.component.html',
   styleUrls: ['./player-list.component.css']
 })

@@ -11,7 +11,7 @@
                 [closeOnEscape]="false" [baseZIndex]="9999">
                 <a href="" class="homeText">&#11164; KarottenKasino</a>
                 <br>
-                <player-list></player-list>
+                <app-player-list></app-player-list>
             </p-sidebar>
         </div>
 
@@ -34,19 +34,19 @@
 
             <div class="p-col-12 p-md-9 p-lg-9 dialogInputs">
                 <div class="fullwidth" [hidden]="!(lobbyStatus === 3)">
-                    <guess-result ></guess-result>
+                    <app-guess-result></app-guess-result>
                 </div>
                 <div class="fullwidth" [hidden]="!(isBabo && lobbyStatus === 1)">
-                    <babo-input ></babo-input>
+                    <app-babo-input></app-babo-input>
                 </div>
                 <div class="fullwidth" [hidden]="!(lobbyStatus === 2 || lobbyStatus === 3)">
-                    <guess-information></guess-information>
+                    <app-guess-information></app-guess-information>
                 </div>
                 <div class="fullwidth" [hidden]="!(!isBabo && lobbyStatus === 2)">
-                    <guess-input ></guess-input>
+                    <app-guess-input></app-guess-input>
                 </div>
                 <div id="babo-result" class="fullwidth" [hidden]="!(isBabo && lobbyStatus === 3)">
-                    <babo-result></babo-result>
+                    <app-babo-result></app-babo-result>
                 </div>
             </div>
         </div>

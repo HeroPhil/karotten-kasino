@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { PriceIsNiceService } from 'src/app/services/price-is-nice.service';
 
 @Component({
-  selector: 'guess-input',
+  selector: 'app-guess-input',
   templateUrl: './guess-input.component.html',
   styleUrls: ['./guess-input.component.css']
 })
