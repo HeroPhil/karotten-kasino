@@ -1,7 +1,7 @@
 import express from "express";
 import http from "http";
 import { Server, Socket } from "socket.io";
-import { createProxyMiddleware, Filter, Options, RequestHandler } from 'http-proxy-middleware';
+import { createProxyMiddleware} from 'http-proxy-middleware';
 
 export class BackendServer {
     app = express();
