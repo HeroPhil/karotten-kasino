@@ -46,3 +46,20 @@ img {
     z-index: -1;
     object-fit: cover;
 }
+
+/* @media only screen and (max-width: 650px) {
+    .title {
+        font-size: 4rem;
+    }
+}
+
+@media only screen and (max-width: 490px) {
+    .title {
+        font-size: 3rem;
+    }
+}
+@media only screen and (max-width: 410px) {
+    .title {
+        font-size: 2rem;
+    }
+} */

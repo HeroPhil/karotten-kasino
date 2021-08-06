@@ -1,3 +1,24 @@
 .p-component {
     padding: var(--content-padding);
 }
+
+@media only screen and (max-width: 650px) {
+    .title {
+        font-size: 4rem;
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    .title {
+        font-size: 3rem;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .title {
+        font-size: 2.3rem;
+    }
+    .p-component {
+        padding: unset;
+    }
+}
