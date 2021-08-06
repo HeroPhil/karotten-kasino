@@ -14,8 +14,6 @@
     justify-content: center;
 }
 
-
-
 @media only screen and (max-width: 570px) {
     .gameTitle {
         font-size: 3rem;
