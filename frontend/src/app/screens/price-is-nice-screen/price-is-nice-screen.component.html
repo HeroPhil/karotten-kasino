@@ -7,18 +7,21 @@
     <div class="p-grid p-jc-between header" id="PIN-Header">
 
         <div class="p-col-12 p-md-3 p-lg-3" [hidden]="!display">
-            <p-sidebar [(visible)]="display" [style]="{width:'25%'}" [modal]=" false" [dismissible]="false" [closeOnEscape]="false" [baseZIndex]="9999">
-                <a href="" class="homeText">KarottenKasino</a>
+            <p-sidebar [(visible)]="display" [style]="{width:'25%'}" [modal]=" false" [dismissible]="false"
+                [closeOnEscape]="false" [baseZIndex]="9999">
+                <a href="" class="homeText">&#11164; KarottenKasino</a>
+                <br>
                 <player-list></player-list>
             </p-sidebar>
         </div>
 
         <div class="p-col-12 p-md-3 p-lg-3" [hidden]="display">
-            <p-button type="text" (click)="display = true" icon="pi pi-plus" label="Players List" [hidden]="display"></p-button>
+            <p-button type="text" (click)="display = true" icon="pi pi-plus" label="Players List" [hidden]="display">
+            </p-button>
         </div>
 
         <div class="p-col-12 p-md-6 p-lg-6" id="lobbyCode">
-            Lobby: {{lobbyCode ?? "Lobby Code"}}
+            Lobby : {{lobbyCode ?? "Lobby Code"}}
         </div>
         <div class="p-col-12 p-md-3 p-lg-3" id="gameName">
             DER PREIS IST NICE
@@ -28,14 +31,23 @@
     <div class="dialogContainer">
         <div class="p-grid p-jc-center">
             <div class="p-col-12 p-md-3 p-lg-3" [hidden]="!display">&nbsp;</div>
-            
+
             <div class="p-col-12 p-md-9 p-lg-9 dialogInputs">
-                <guess-information [hidden]="!(lobbyStatus === 2 || lobbyStatus === 3)">
-                </guess-information>
-                <babo-input [hidden]="!(isBabo && lobbyStatus === 1)"></babo-input>
-                <guess-result [hidden]="!(lobbyStatus === 3)"></guess-result>
-                <guess-input [hidden]="!(!isBabo && lobbyStatus === 2)"></guess-input>
-                <babo-result [hidden]="!(isBabo && lobbyStatus === 3)"></babo-result>
+                <div class="fullwidth" [hidden]="!(lobbyStatus === 3)">
+                    <guess-result ></guess-result>
+                </div>
+                <div class="fullwidth" [hidden]="!(isBabo && lobbyStatus === 1)">
+                    <babo-input ></babo-input>
+                </div>
+                <div class="fullwidth" [hidden]="!(lobbyStatus === 2 || lobbyStatus === 3)">
+                    <guess-information></guess-information>
+                </div>
+                <div class="fullwidth" [hidden]="!(!isBabo && lobbyStatus === 2)">
+                    <guess-input ></guess-input>
+                </div>
+                <div id="babo-result" class="fullwidth" [hidden]="!(isBabo && lobbyStatus === 3)">
+                    <babo-result></babo-result>
+                </div>
             </div>
         </div>
     </div>
