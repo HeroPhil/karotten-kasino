@@ -6,7 +6,8 @@
     <p *ngIf="guessInformation.description !== undefined">{{ guessInformation.description }}</p>
 </div>
 <!-- Styling mit quadratischem Rahmen-->
-<p-carousel [value]="guessInformation.imageUrls ?? []" [numVisible]="1" [numScroll]="1" [circular]="true">
+<p-carousel [value]="guessInformation.imageUrls ?? []" [numVisible]="1" [numScroll]="1" [circular]="true"
+    [hidden]="guessInformation.imageUrls === null">
     <ng-template let-imageUrl pTemplate="item">
         <div class="sliderContainer">
             <div class="p-mb-3" id="wrapper">

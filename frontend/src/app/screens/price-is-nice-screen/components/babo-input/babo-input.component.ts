@@ -11,6 +11,7 @@ import { WebcrawlerService } from 'src/app/services/webcrawler.service';
 export class BaboInputComponent {
 
   showImportDialog = false;
+  isLoading = false;
 
   guessInformationForm = this.formBuilder.group({
     price: undefined,
@@ -32,12 +33,14 @@ export class BaboInputComponent {
   }
 
   async importFromAmazon() {
+    this.isLoading = true;
     this.guessInformationForm.setValue(
       await this.webcrawlerService.getProductInformationFromAmazonUrl(this.amazonImportForm.value.targetUrl)
     );
 
     this.amazonImportForm.reset();
     this.showImportDialog = false;
+    this.isLoading = false;
   }
 
 }

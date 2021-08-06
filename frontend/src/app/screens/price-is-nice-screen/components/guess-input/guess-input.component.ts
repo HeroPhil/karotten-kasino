@@ -12,10 +12,12 @@ export class GuessInputComponent {
   constructor(private priceIsNiceService: PriceIsNiceService, private formBuilder: FormBuilder) { }
 
   guessForm = this.formBuilder.group({ guessValue: 0 });
+  hidden = false;
 
   onSubmit(): void {
     this.priceIsNiceService.takeGuess(this.guessForm.value.guessValue);
     this.guessForm.reset();
+    this.hidden = true;
   }
 
 }

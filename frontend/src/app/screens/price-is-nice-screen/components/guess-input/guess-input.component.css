@@ -1,0 +1,24 @@
+.fc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: start;
+    width: 100%;
+    margin: 1rem 0;
+}
+
+#guessForm {
+    margin-top: 2rem;
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#guessButton {
+    margin-top: 0.5rem;
+}
+
+[hidden] {
+    display:none !important;
+}
