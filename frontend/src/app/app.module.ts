@@ -26,8 +26,6 @@ import { ToastModule } from 'primeng/toast';
 import { GuessInformationComponent } from './screens/price-is-nice-screen/components/guess-information/guess-information.component';
 import { ChipsModule } from 'primeng/chips';
 import { SplitterModule } from 'primeng/splitter';
-import { ContactScreenComponent } from './screens/contact-screen/contact-screen.component';
-import { GameOverviewScreenComponent } from './screens/game-overview-screen/game-overview-screen.component';
 import {SidebarModule} from 'primeng/sidebar';
 import { DialogModule } from 'primeng/dialog';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
@@ -53,9 +51,7 @@ const config: SocketIoConfig = {
     GuessResultComponent,
     BaboInputComponent,
     BaboResultComponent,
-    GuessInformationComponent,
-    ContactScreenComponent,
-    GameOverviewScreenComponent,
+    GuessInformationComponent
   ],
   imports: [
     BrowserModule,

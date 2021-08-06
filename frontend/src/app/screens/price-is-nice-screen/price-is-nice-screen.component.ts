@@ -22,11 +22,11 @@ export class PriceIsNiceScreenComponent implements OnInit {
     this.priceIsNiceService.isBabo.subscribe((value) => {
       this.isBabo = value;
       if (value) {
-        this.messageService.add({ summary: "Do bis jetz aan de Maat!", detail: "Lass dir was gutes einfallen", severity: "warn" , key: "tr-toast"});
+        this.messageService.add({ summary: "Du bist jetzt Babo!", detail: "Lass dir was gutes einfallen!", severity: "warn" , key: "tr-toast"});
       }
     });
-    this.priceIsNiceService.playerJoined.subscribe((playerName) => this.messageService.add({ summary: playerName + " es beijetrodde", severity: "success" , key: "bc-toast"}));
-    this.priceIsNiceService.playerYeeted.subscribe((playerName) => this.messageService.add({ summary: playerName + " hätt de runde verloße", severity: "error", key: "bc-toast"}));
+    this.priceIsNiceService.playerJoined.subscribe((playerName) => this.messageService.add({ summary: playerName + " ist der Lobby beigetreten", severity: "success" , key: "bc-toast"}));
+    this.priceIsNiceService.playerYeeted.subscribe((playerName) => this.messageService.add({ summary: playerName + " hat die Lobby verlassen", severity: "error", key: "bc-toast"}));
     this.lobbyCode = this.priceIsNiceService.lobbyCode;
   }
 
