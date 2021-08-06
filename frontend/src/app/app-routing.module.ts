@@ -7,7 +7,7 @@ import { PriceIsNiceScreenComponent } from './screens/price-is-nice-screen/price
 const routes: Routes = [
   { path: "", component: LandingScreenComponent },
   { path: "lobby", component: LobbyScreenComponent },
-  { path: "price-is-nice", component: PriceIsNiceScreenComponent },
+  { path: "price-is-nice", component: PriceIsNiceScreenComponent},
   { path: "**", redirectTo: "/" },
 ];
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { PriceIsNiceService } from 'src/app/services/price-is-nice.service';
+import { PlayerListEntry, PriceIsNiceService } from 'src/app/services/price-is-nice.service';
 import { WebcrawlerService } from 'src/app/services/webcrawler.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class BaboInputComponent {
 
   showImportDialog = false;
   isLoading = false;
+  players: PlayerListEntry[] = [];
 
   guessInformationForm = this.formBuilder.group({
     price: undefined,
@@ -25,6 +26,12 @@ export class BaboInputComponent {
   });
 
   constructor(private priceIsNiceService: PriceIsNiceService, private formBuilder: FormBuilder, private webcrawlerService: WebcrawlerService) { }
+  
+  ngOnInit(): void {
+    this.priceIsNiceService.players.subscribe(players => {
+      this.players = players;
+    });
+  }
 
   onSubmit() {
     this.priceIsNiceService.submitGuessInformation(this.guessInformationForm.value);
