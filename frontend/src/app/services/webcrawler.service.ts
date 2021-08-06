@@ -41,7 +41,14 @@ export class WebcrawlerService {
   }
 
   private parsePrice(terms: HTMLElement): string {
-    let result = terms.querySelector('#priceblock_ourprice')?.innerText ?? 0;
+    const htmlPriceSelectors = ['#priceblock_ourprice', '#priceblock_dealprice'];
+    let result: string = "0";
+    for(let selector of htmlPriceSelectors) {
+        result = terms.querySelector(selector)?.innerText ?? "0";
+        if (result != "0") {
+          break;
+        }
+    }
     result.trim();
     result = result.split("€", 1)[0];
     result = result.trim();
