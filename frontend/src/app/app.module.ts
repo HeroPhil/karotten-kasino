@@ -29,11 +29,18 @@ import { SplitterModule } from 'primeng/splitter';
 import {SidebarModule} from 'primeng/sidebar';
 import { DialogModule } from 'primeng/dialog';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+import { LottiComponent } from './screens/price-is-nice-screen/components/lottie/lottie.component';
 
 
 const config: SocketIoConfig = {
   url: window.location.origin, // TODO find solution for better dev testing
 };  // ?
+
+export function playerFactory() {
+  return player;
+}
 
 @NgModule({
   declarations: [
@@ -51,7 +58,8 @@ const config: SocketIoConfig = {
     GuessResultComponent,
     BaboInputComponent,
     BaboResultComponent,
-    GuessInformationComponent
+    GuessInformationComponent,
+    LottiComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +77,8 @@ const config: SocketIoConfig = {
     SplitterModule,
     SidebarModule,
     DialogModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    LottieModule.forRoot({ player: playerFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]

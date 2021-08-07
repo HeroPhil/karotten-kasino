@@ -59,14 +59,27 @@
     justify-content: flex-end;
 }
 
+.fc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: start;
+    width: 100%;
+    margin: 1rem 0;
+}
+
 #waiting {
     margin-top: 2rem;
     width: 100%;
     text-align: center;
     text-decoration: none;
-    font-family: sketch;
     color: var(--primary-color);
     font-size: 2.5rem;
+}
+
+.lottieContainer {
+    width: 60%;
 }
 
 [hidden] {

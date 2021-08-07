@@ -22,7 +22,7 @@
             <p-button type="text" (click)="display = true" icon="pi pi-plus" label="Players List" [hidden]="display">
             </p-button>
         </div>
-        
+
         <div class="p-col-12 p-md-6 p-lg-6" id="lobbyCode">
             Lobby : {{lobbyCode ?? "Lobby Code"}}
         </div>
@@ -49,8 +49,11 @@
                 <div class="fullwidth" [hidden]="!(isBabo && lobbyStatus === 1)">
                     <app-babo-input></app-babo-input>
                 </div>
-                <div class="fullwidth" [hidden]="!(lobbyStatus === 1)">
-                    <div id="waiting">Warte bis der Babo ein Produkt ausgewählt hat</div>
+                <div class="fullwidth fc" [hidden]="!(!isBabo && lobbyStatus === 1)">
+                    <div class="lottieContainer">
+                        <app-lottie></app-lottie>
+                    </div>
+                    <div id="waiting">Warte bis der Babo ein Produkt ausgewählt hat...</div>
                 </div>
                 <div class="fullwidth" [hidden]="!(lobbyStatus === 2 || lobbyStatus === 3)">
                     <app-guess-information></app-guess-information>
