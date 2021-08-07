@@ -3,12 +3,12 @@
     <form [formGroup]="joinForm" (ngSubmit)="onSubmit()" ngNativeValidate>
         <span class="p-float-label">
             <input pInputText id="float-input" class="p-inputtext-lg" type="text" formControlName="lobbyCode"
-                maxlength="16" pattern="[A-Za-z0-9]+" required>
+                maxlength="8" pattern="[A-Za-z0-9]+" required>
             <label for="float-input">Lobby Code</label>
         </span>
         <span class="p-float-label">
             <input pInputText id="float-input" class="p-inputtext-lg" type="text" formControlName="displayName"
-                maxlength="16" pattern="[A-Za-z0-9]+" required>
+                maxlength="12" pattern="[A-Za-z0-9öäüß]+" required>
             <label for="float-input">Username</label>
         </span>
         <div id="playbutton">

@@ -1,6 +1,6 @@
-#PIN-Header {
+/* #PIN-Header {
     min-height: 3.75rem;
-}
+} */
 
 .box {
     display: flex;
@@ -47,6 +47,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-bottom: 1rem;
 }
 
 .fullwidth {
@@ -58,6 +59,45 @@
     justify-content: flex-end;
 }
 
+#waiting {
+    margin-top: 2rem;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    font-family: sketch;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+
 [hidden] {
     display:none !important;
+}
+
+.safearea{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+@media only screen and (max-width: 767px) {
+    #babo-result {
+        justify-content: center;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 958px) {
+    .homeText {
+        font-size: 1.18rem;
+    }
+}
+
+@media only screen and (min-width: 959px) and (max-width: 1234px) {
+    .homeText {
+        font-size: 1.5rem;
+    }
+}
+
+@media only screen and (min-width:1235px) and (max-width: 1520px) {
+    .homeText {
+        font-size: 2rem;
+    }
 }

@@ -22,9 +22,9 @@
         <p-chips id="float-input-images" name="imageUrls" ngModel separator=" "></p-chips>
     </div>
 
-    <!-- <p-chips name="imageUrls" ngModel separator=" "></p-chips> -->
-
     <p-button class="fc" type="submit" label="Los gehts!" [disabled]="players.length < 2"></p-button>
+    <div class="p-text-center p-text-light fullwidth" [hidden]="players.length > 1">Warte auf Mitspieler</div>
+
 
 </form>
 

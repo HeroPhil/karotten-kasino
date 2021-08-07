@@ -2,11 +2,11 @@
     <form [formGroup]="guessForm" (ngSubmit)="onSubmit()" id="guessForm" class="fc" ngNativeValidate>
 
         <span class="p-float-label" id="guessInput">
-            <input id="float-input-guessValue" type="text" formControlName="guessValue" maxlength="20" required pattern="[0-9]+([\.,][0-9]{1,2})?" pInputText>
+            <input id="float-input-guessValue" type="text" formControlName="guessValue" maxlength="20" required pattern="[0-9]+([\.,][0-9]{1,2})?" pInputText placeholder="0">
             <label for="float-input-guessValue">Preis</label>
         </span>
 
-        <button pButton type="submit" label="Guess" class="p-button-lg" id="guessButton"></button>
+        <button pButton type="submit" label="Einreichen" class="p-button-lg" id="guessButton"></button>
 
     </form>
 </div>
