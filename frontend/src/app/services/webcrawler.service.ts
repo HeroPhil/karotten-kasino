@@ -12,7 +12,7 @@ export class WebcrawlerService {
   async getProductInformationFromAmazonUrl(url: string): Promise<GuessInformation> {
 
     const _url = new URL(url);
-    _url.protocol = "http";
+    _url.protocol = new URL(window.origin).protocol;
     _url.hostname = new URL(window.origin).hostname;
     _url.port = new URL(window.origin).port
     _url.pathname = "amazon" + _url.pathname;
