@@ -1,3 +1,10 @@
+export enum PlayerStatus {
+    void,
+    babo,
+    guessing,
+    guessTaken
+}
+
 export class Player {
 
     guessValue: number | undefined;

@@ -1,0 +1,116 @@
+/* #PIN-Header {
+    min-height: 3.75rem;
+} */
+
+.box {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    margin-top: 0.5rem;
+}
+
+.header {
+    flex: 0 1 3.75rem;
+}
+
+.dialogContainer {
+    flex: 1 1 auto;
+}
+
+.dialogInputs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#lobbyCode {
+    text-align: center;
+    font-family: AngryBlu;
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    padding: 1rem;
+}
+
+#gameName {
+    text-align: right;
+    font-family: AngryBlu;
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    padding: 1rem;
+}
+
+.homeText {
+    text-decoration: none;
+    font-family: sketch;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 1rem;
+}
+
+.fullwidth {
+    width: 100%;
+}
+
+#babo-result {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.fc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: start;
+    width: 100%;
+    margin: 1rem 0;
+}
+
+#waiting {
+    margin-top: 2rem;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+
+.lottieContainer {
+    width: 60%;
+}
+
+[hidden] {
+    display:none !important;
+}
+
+.safearea{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+@media only screen and (max-width: 767px) {
+    #babo-result {
+        justify-content: center;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 958px) {
+    .homeText {
+        font-size: 1.18rem;
+    }
+}
+
+@media only screen and (min-width: 959px) and (max-width: 1234px) {
+    .homeText {
+        font-size: 1.5rem;
+    }
+}
+
+@media only screen and (min-width:1235px) and (max-width: 1520px) {
+    .homeText {
+        font-size: 2rem;
+    }
+}

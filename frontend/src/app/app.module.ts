@@ -19,19 +19,28 @@ import { PlayerListComponent } from './screens/price-is-nice-screen/components/p
 import { GuessInputComponent } from './screens/price-is-nice-screen/components/guess-input/guess-input.component';
 import { GuessResultComponent } from './screens/price-is-nice-screen/components/guess-result/guess-result.component';
 import { TableModule } from 'primeng/table';
-import {ButtonModule} from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
 import { BaboInputComponent } from './screens/price-is-nice-screen/components/babo-input/babo-input.component';
 import { BaboResultComponent } from './screens/price-is-nice-screen/components/babo-result/babo-result.component';
-import {ToastModule} from 'primeng/toast';
+import { ToastModule } from 'primeng/toast';
 import { GuessInformationComponent } from './screens/price-is-nice-screen/components/guess-information/guess-information.component';
-import {ChipsModule} from 'primeng/chips';
-import {SplitterModule} from 'primeng/splitter';
-import { ContactScreenComponent } from './screens/contact-screen/contact-screen.component';
-import { GameOverviewScreenComponent } from './screens/game-overview-screen/game-overview-screen.component';
+import { ChipsModule } from 'primeng/chips';
+import { SplitterModule } from 'primeng/splitter';
+import {SidebarModule} from 'primeng/sidebar';
+import { DialogModule } from 'primeng/dialog';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+import { LottiComponent } from './screens/price-is-nice-screen/components/lottie/lottie.component';
+
 
 const config: SocketIoConfig = {
   url: window.location.origin, // TODO find solution for better dev testing
 };  // ?
+
+export function playerFactory() {
+  return player;
+}
 
 @NgModule({
   declarations: [
@@ -50,8 +59,7 @@ const config: SocketIoConfig = {
     BaboInputComponent,
     BaboResultComponent,
     GuessInformationComponent,
-    ContactScreenComponent,
-    GameOverviewScreenComponent
+    LottiComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +74,11 @@ const config: SocketIoConfig = {
     ButtonModule,
     ToastModule,
     ChipsModule,
-    SplitterModule
+    SplitterModule,
+    SidebarModule,
+    DialogModule,
+    ProgressSpinnerModule,
+    LottieModule.forRoot({ player: playerFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]

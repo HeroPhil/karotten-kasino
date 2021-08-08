@@ -46,3 +46,15 @@ img {
     z-index: -1;
     object-fit: cover;
 }
+
+@media only screen and (max-width: 540px) {
+    .gameTitle {
+        font-size: 3rem;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .gameTitle {
+        font-size: 2.2rem;
+    }
+}

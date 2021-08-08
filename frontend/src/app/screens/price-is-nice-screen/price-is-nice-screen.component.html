@@ -1,39 +1,70 @@
 <p-toast key="tr-toast" position="top-right"></p-toast>
 <p-toast key="bc-toast" position="bottom-center"></p-toast>
 
-<div>
-    <p-splitter [style]="{'height': '80%'}" [panelSizes]="[20,80]" [minSizes]="[10,0]" styleClass="p-mb-5">
-        <ng-template pTemplate>
-            <div class="p-col p-d-flex">
-                <player-list></player-list>
-            </div>
-        </ng-template>
-        <ng-template pTemplate>
-            <p-splitter layout="vertical" [panelSizes]="[15,85]">
-                <ng-template pTemplate>
-                    <div style="flex-grow: 1;" class="p-d-flex p-ai-center p-jc-center">
-                        {{lobbyCode ?? "Lobby Code"}}
+
+
+<div class="box">
+    <div class="p-grid p-jc-between header" id="PIN-Header">
+
+        <div class="p-col-12 p-md-3 p-lg-3 p-d-none p-d-md-inline-flex" [hidden]="!display">
+            <p-sidebar [(visible)]="display" [style]="{width:'25%'}" [modal]=" false" [dismissible]="false"
+                [closeOnEscape]="false" [baseZIndex]="9999">
+                <a href="" class="homeText">&#11164; KarottenKasino</a>
+                <app-player-list></app-player-list>
+            </p-sidebar>
+        </div>
+
+        <div class="p-col-12 p-d-md-none">
+            <a href="" class="homeText">&#11164; KarottenKasino</a>
+        </div>
+
+        <div class="p-col-12 p-md-3 p-lg-3" [hidden]="display">
+            <p-button type="text" (click)="display = true" icon="pi pi-plus" label="Players List" [hidden]="display">
+            </p-button>
+        </div>
+
+        <div class="p-col-12 p-md-6 p-lg-6" id="lobbyCode">
+            Lobby : {{lobbyCode ?? "Lobby Code"}}
+        </div>
+        <div class="p-col-12 p-md-3 p-lg-3" id="gameName">
+            DER PREIS IST NICE
+        </div>
+
+        <div class="p-col-12 p-d-md-none safearea">
+            <app-player-list></app-player-list>
+        </div>
+    </div>
+
+    <div class="dialogContainer">
+        <div class="p-grid p-jc-center">
+            <div class="p-col-12 p-md-3 p-lg-3" [hidden]="!display">&nbsp;</div>
+
+            <div class="p-col-12 p-md-9 p-lg-9 dialogInputs">
+                <div class="fullwidth" [hidden]="!(lobbyStatus === 3)">
+                    <app-guess-result></app-guess-result>
+                </div>
+                <div id="babo-result" class="fullwidth p-d-md-none" [hidden]="!(isBabo && lobbyStatus === 3)">
+                    <app-babo-result></app-babo-result>
+                </div>
+                <div class="fullwidth" [hidden]="!(isBabo && lobbyStatus === 1)">
+                    <app-babo-input></app-babo-input>
+                </div>
+                <div class="fullwidth fc" [hidden]="!(!isBabo && lobbyStatus === 1)">
+                    <div class="lottieContainer">
+                        <app-lottie></app-lottie>
                     </div>
-                </ng-template>
-                <ng-template pTemplate>
-                    <p-splitter [panelSizes]="[70,30]">
-                        <ng-template pTemplate>
-                            <div class="p-col p-d-flex p-jc-center">
-                                <guess-information [hidden]="!(lobbyStatus === 2 || lobbyStatus === 3)">
-                                </guess-information>
-                                <babo-input [hidden]="!(isBabo && lobbyStatus === 1)"></babo-input>
-                                <guess-result [hidden]="!(lobbyStatus === 3)"></guess-result>
-                            </div>
-                        </ng-template>
-                        <ng-template pTemplate>
-                            <div class="p-col p-d-flex p-jc-center">
-                                <guess-input [hidden]="!(!isBabo && lobbyStatus === 2)"></guess-input>
-                                <babo-result [hidden]="!(isBabo && lobbyStatus === 3)"></babo-result>
-                            </div>
-                        </ng-template>
-                    </p-splitter>
-                </ng-template>
-            </p-splitter>
-        </ng-template>
-    </p-splitter>
+                    <div id="waiting">Warte bis der Babo ein Produkt ausgewählt hat...</div>
+                </div>
+                <div class="fullwidth" [hidden]="!(lobbyStatus === 2 || lobbyStatus === 3)">
+                    <app-guess-information></app-guess-information>
+                </div>
+                <div class="fullwidth" [hidden]="!(!isBabo && lobbyStatus === 2)">
+                    <app-guess-input></app-guess-input>
+                </div>
+                <div id="babo-result" class="fullwidth" [hidden]="!(isBabo && lobbyStatus === 3)">
+                    <app-babo-result></app-babo-result>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

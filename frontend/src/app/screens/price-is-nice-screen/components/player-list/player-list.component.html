@@ -1,8 +1,14 @@
-<div *ngFor="let player of players">
-    <p>
-        <span *ngIf="player.isBabo"> 
-            <img src="./assets/images/crown.png"> 
-        </span> {{ player.displayName }}
-        <span id="points"> {{ player.points }} </span>
-    </p>
+<div class="playerList">
+    <div *ngFor="let player of players">
+        <div class="playerListElement">
+            <span>
+                {{ player.displayName }}
+                <span>
+                    <img *ngIf="player.playerStatus === 1" src="./assets/images/crown.png">
+                    <p-progressSpinner *ngIf="player.playerStatus === 2" strokeWidth="6" animationDuration="1s" [style]="{width: '2rem', height: '2rem'}"></p-progressSpinner>
+                </span>
+            </span>
+            <span class="points"> {{ player.points }} </span>
+        </div>
+    </div>
 </div>

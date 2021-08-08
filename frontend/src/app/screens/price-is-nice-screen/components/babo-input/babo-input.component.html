@@ -1,22 +1,41 @@
-<form [formGroup]="guessInformationForm" (ngSubmit)="onSubmit()">
+<div class="fc" id="amazonImport">
+    <button pButton type="button" (click)="showImportDialog = true" label="Import von Amazon" icon="pi pi-arrow-down" iconPos="left"></button>
+</div>
 
-    <span class="p-float-label">
-        <input id="float-input" type="text" formControlName="price" pInputText>
-        <label for="float-input">Münzen</label>
-    </span>
+<form [formGroup]="guessInformationForm" (ngSubmit)="onSubmit()" id="baboInput" class="fc" ngNativeValidate>
 
-    <span class="p-float-label">
-        <input id="float-input" type="text" formControlName="name" pInputText>
-        <label for="float-input">Name</label>
-    </span>
 
-    <span class="p-float-label">
-        <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize" name="description" ngModel></textarea>
-        <label for="float-input">Beschreibung</label>
-    </span>
+    <div class="p-field fc">
+        <label for="float-input-price">Preis</label>
+        <input id="float-input-price" type="text" formControlName="price" maxlength="20" required pattern="[0-9]+([\.,][0-9]{1,2})?" pInputText />
+    </div>
+    <div class="p-field fc">
+        <label for="float-input-name">Name</label>
+        <input id="float-input-name" type="text" formControlName="name" required pInputText/>
+    </div>
+    <div class="p-field fc">
+        <label for="float-input-description">Beschreibung</label>
+        <textarea rows="10" cols="75" pInputTextarea autoResize="autoResize" name="description" ngModel class="p-inputtext" id="float-input-description"></textarea>
+    </div>
+    <div class="p-field fc">
+        <label for="float-input-images">Bilder URL`s</label>
+        <p-chips id="float-input-images" name="imageUrls" ngModel separator=" "></p-chips>
+    </div>
 
-    <p-chips name="imageUrls" ngModel separator=" "></p-chips>
+    <p-button class="fc" type="submit" label="Los gehts!" [disabled]="players.length < 2"></p-button>
+    <div class="p-text-center p-text-light fullwidth" [hidden]="players.length > 1">Warte auf Mitspieler</div>
 
-    <button pButton type="submit">dat weede der nie errate</button>
 
 </form>
+
+
+<p-dialog header="Import von Amazon" [(visible)]="showImportDialog">
+    <form [formGroup]="amazonImportForm" (ngSubmit)="importFromAmazon()">
+        <span class="p-float-label">
+            <input id="float-input-amazonUrl" type="text" formControlName="targetUrl" pInputText>
+            <label for="float-input-amazonUrl">AmazonURL</label>
+        </span>
+        <button pButton type="submit" id="submitInput" label="Import" [loading]="isLoading"></button>
+        <button pButton *ngIf="isLoading" type="button" label="Abbrechen" (click)="closingDialog()"></button>
+    </form>
+</p-dialog>

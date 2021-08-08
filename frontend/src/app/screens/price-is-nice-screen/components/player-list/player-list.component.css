@@ -1,16 +1,61 @@
 img {
-    height: 2rem;
+    height: 2.6rem;
     width: auto;
 }
 
-p {
-    font-size: 1.8rem;
+div {
+    font-size: 2.4rem;
     color: var(--text-color);
 }
 
-#points {
+.playerList {
+    margin-top: 1.5rem;
+}
+
+.playerListElement {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.points {
     font-family: AngryBlu;
-    font-size: 2.4rem;
+    font-size: 3rem;
     color: var(--primary-color);
-    margin-left: 2rem;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 958px) {
+    div {
+        font-size: 1rem;
+    }
+    .points {
+        font-size: 1.6rem;
+    }
+    img {
+        height: 1.2rem;
+    }
+}
+
+@media only screen and (min-width: 959px) and (max-width: 1234px) {
+    div {
+        font-size: 1.5rem;
+    }
+    .points {
+        font-size: 2.1rem;
+    }
+    img {
+        height: 1.7rem;
+    }
+}
+
+@media only screen and (min-width: 1235px) and (max-width: 1520px) {
+    div {
+        font-size: 2rem;
+    }
+    .points {
+        font-size: 2.6rem;
+    }
+    img {
+        height: 2.2rem;
+    }
 }

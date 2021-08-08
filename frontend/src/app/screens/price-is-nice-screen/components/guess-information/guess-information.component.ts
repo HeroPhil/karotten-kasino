@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GuessInformation, PriceIsNiceService } from 'src/app/services/price-is-nice.service';
 
 @Component({
-  selector: 'guess-information',
+  selector: 'app-guess-information',
   templateUrl: './guess-information.component.html',
   styleUrls: ['./guess-information.component.css']
 })

@@ -3,7 +3,7 @@ import { MenuItem, PrimeIcons } from 'primeng/api';
 
 
 @Component({
-  selector: 'landingScreen-menu',
+  selector: 'app-landing-screen-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })

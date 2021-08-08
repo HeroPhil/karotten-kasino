@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GuessResult, PriceIsNiceService } from 'src/app/services/price-is-nice.service';
 
 @Component({
-  selector: 'guess-result',
+  selector: 'app-guess-result',
   templateUrl: './guess-result.component.html',
   styleUrls: ['./guess-result.component.css']
 })
@@ -22,10 +22,10 @@ export class GuessResultComponent implements OnInit {
 
     this.cols = [
       { field: 'displayName', header: 'Spieler' },
-      { field: 'guessValue', header: 'Münzen' },
-      { field: 'guessDelta', header: 'Miese' },
-      { field: 'points', header: 'Score' },
-      { field: 'pointsDelta', header: '' },
+      { field: 'guessValue', header: 'Preis' },
+      { field: 'guessDelta', header: 'Abstand' },
+      { field: 'pointsDelta', header: 'Punkte' },
+      // { field: 'points', header: 'Punkte Insgesamt' },
     ];
 
   }

@@ -1,6 +1,7 @@
 import { server } from "..";
 import { GuessInformation } from "./models/guessInformation";
 import { Lobby, LobbyStatus } from "./models/lobby";
+import { PlayerStatus } from "./models/player";
 
 export class PriceIsNiceHandler {
 
@@ -23,6 +24,7 @@ export class PriceIsNiceHandler {
                 lobby.advanceLobbyStatus();
             }
             server.io.to(lobby.id).emit("lobbyStatus", lobby.getLobbyStatus());
+            this.publishPlayerList(lobby);
         }
     }
 
@@ -30,10 +32,10 @@ export class PriceIsNiceHandler {
         server.io.in(lobby.id).emit("playerList", lobby.getPlayers().map((player) => {
             return {
                 displayName: player.displayName,
-                isBabo: (player.id == lobby!.baboId),
+                playerStatus: lobby!.getPlayerStatus(player.id),
                 points: player.points,
             }
-        }).sort((a, b) => a.isBabo ? -1 : (b.isBabo ? 1 : b.points - a.points)));
+        }).sort((a, b) => a.playerStatus == PlayerStatus.babo ? -1 : (b.playerStatus == PlayerStatus.babo ? 1 : b.points - a.points)));
     }
 
     crownNewBabo(lobby: Lobby) {
@@ -92,13 +94,12 @@ export class PriceIsNiceHandler {
             server.io.to(lobby.id).emit("guessResults", lobby.getPlayers().filter((player) => player.id != lobby.baboId).map(player => {
                 return {
                     displayName: player.displayName,
-                    guessValue: player.guessValue,
-                    guessDelta: player.guessDelta,
+                    guessValue: this.parseCurrency(player.guessValue ?? 0),
+                    guessDelta: this.parseCurrency(player.guessDelta ?? 0),
                     points: player.points,
                     pointsDelta: player.pointsDelta,
                 }
             }));
-            this.publishPlayerList(lobby);
 
             server.io.to(lobby.id).emit("guessInformation", lobby.currentGuessInformation!.getAllInformation());
 
@@ -158,7 +159,7 @@ export class PriceIsNiceHandler {
 
         server.addSocketHandler(socket => {
             socket.on("takeGuess", (args) => {
-                const guessValue = args.guessValue;
+                const guessValue = this.parseCurrency(args.guessValue);
 
                 const currentLobby = this.getLobbyFromPlayerId(socket.id);
                 if (currentLobby == undefined || currentLobby.getLobbyStatus() != LobbyStatus.guessOpen) {
@@ -175,6 +176,8 @@ export class PriceIsNiceHandler {
                 }
 
                 socket.emit("takeGuessAkw");
+
+                this.publishPlayerList(currentLobby);
 
                 this.awardPointsIfAllPlayersHaveGuessed(currentLobby);
 
@@ -208,13 +211,8 @@ export class PriceIsNiceHandler {
 
                 if (currentLobby.getLobbyStatus() == LobbyStatus.roundStart && socket.id == currentLobby.baboId) {
 
-                    console.log(args.price);
-                    console.log(args.name);
-                    console.log(args.description);
-                    console.log(args.imageUrls);
-
                     currentLobby.currentGuessInformation = new GuessInformation(
-                        args.price,
+                        this.parseCurrency(args.price),
                         args.name,
                         args.description,
                         args.imageUrls
@@ -267,6 +265,16 @@ export class PriceIsNiceHandler {
             });
         });
 
+    }
+
+    private parseCurrency(value: string | number): number {
+        value = value.toString();
+        value = value.trim();
+        value = value.replace(',', '.');
+        value = Number.parseFloat(value);
+        value = value.toFixed(2);
+        value = Number.parseFloat(value);
+        return value;
     }
 
 }
