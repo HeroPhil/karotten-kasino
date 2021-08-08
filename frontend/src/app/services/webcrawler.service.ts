@@ -23,15 +23,7 @@ export class WebcrawlerService {
       mode: "cors"
     });
     const text = await response.text();
-    console.log(text);
     const terms = parse(text);
-
-    console.log({
-      name: this.parseName(terms),
-      price: this.parsePrice(terms),
-      description: this.parseDescription(terms),
-      imageUrls: this.parseImageUrls(terms),
-    });
 
     try {
       return {
@@ -73,11 +65,37 @@ export class WebcrawlerService {
   }
 
   private parseDescription(terms: HTMLElement): string {
-    let result = terms.querySelector('#feature-bullets')
-      ?.querySelectorAll(".a-list-item")
-      ?.map((htmlElement) => htmlElement.innerText.trim())
-      ?.reduce((previous, text) => previous += (" • " + text + "\n"));
-    return result;
+    const htmlPriceSelectors = ['#feature-bullets', '#productDescription'];
+
+    let bulletsElement: HTMLElement;
+    let indexMode: number | undefined;
+
+    for (let selector of htmlPriceSelectors) {
+      bulletsElement = terms.querySelector(selector);
+      if ((bulletsElement?.innerText?.trim().length != 0) ?? false) {
+        indexMode = htmlPriceSelectors.indexOf(selector);
+        break;
+      }
+    }
+
+    switch (indexMode) {
+      case 0:
+        return (bulletsElement!
+          ?.querySelectorAll(".a-list-item")
+          ?.map((htmlElement) => htmlElement.innerText.trim())
+          ?.filter((feature) => feature != "")
+          ?.reduce((previous, text) => previous += (" • " + text + "\n"), "")) ?? "";
+
+      case 1:
+        return (bulletsElement!
+          ?.querySelectorAll("p")
+          ?.map((htmlElement) => htmlElement.innerText.trim())
+          ?.filter((feature) => feature != "")
+          ?.reduce((previous, text) => previous += (" • " + text + "\n"), "")) ?? "";
+
+      default:
+        return "";
+    }
   }
 
   private parseImageUrls(terms: HTMLElement): string[] {
