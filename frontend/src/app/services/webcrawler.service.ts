@@ -23,14 +23,29 @@ export class WebcrawlerService {
       mode: "cors"
     });
     const text = await response.text();
+    console.log(text);
     const terms = parse(text);
 
-    return {
+    console.log({
       name: this.parseName(terms),
       price: this.parsePrice(terms),
       description: this.parseDescription(terms),
       imageUrls: this.parseImageUrls(terms),
-    };
+    });
+
+    try {
+      return {
+        name: this.parseName(terms),
+        price: this.parsePrice(terms),
+        description: this.parseDescription(terms),
+        imageUrls: this.parseImageUrls(terms),
+      };
+    } catch {
+      return {
+        name: "",
+        price: "",
+      };
+    }
 
   }
 
@@ -43,11 +58,11 @@ export class WebcrawlerService {
   private parsePrice(terms: HTMLElement): string {
     const htmlPriceSelectors = ['#priceblock_ourprice', '#priceblock_dealprice'];
     let result: string = "0";
-    for(let selector of htmlPriceSelectors) {
-        result = terms.querySelector(selector)?.innerText ?? "0";
-        if (result != "0") {
-          break;
-        }
+    for (let selector of htmlPriceSelectors) {
+      result = terms.querySelector(selector)?.innerText ?? "0";
+      if (result != "0") {
+        break;
+      }
     }
     result.trim();
     result = result.split("€", 1)[0];
@@ -59,9 +74,9 @@ export class WebcrawlerService {
 
   private parseDescription(terms: HTMLElement): string {
     let result = terms.querySelector('#feature-bullets')
-      .querySelectorAll(".a-list-item")
-      .map((htmlElement) => htmlElement.innerText.trim())
-      .reduce((previous, text) => previous += (" • " + text + "\n"));
+      ?.querySelectorAll(".a-list-item")
+      ?.map((htmlElement) => htmlElement.innerText.trim())
+      ?.reduce((previous, text) => previous += (" • " + text + "\n"));
     return result;
   }
 
