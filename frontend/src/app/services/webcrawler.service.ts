@@ -10,22 +10,21 @@ export class WebcrawlerService {
   constructor() { }
 
   async getProductInformationFromAmazonUrl(url: string): Promise<GuessInformation> {
-
-    const _url = new URL(url);
-    _url.protocol = new URL(window.origin).protocol;
-    _url.hostname = new URL(window.origin).hostname;
-    _url.port = new URL(window.origin).port
-    _url.pathname = "amazon" + _url.pathname;
-
-    url = _url.toString();
-
-    const response = await fetch(url, {
-      mode: "cors"
-    });
-    const text = await response.text();
-    const terms = parse(text);
-
     try {
+      const _url = new URL(url);
+      _url.protocol = new URL(window.origin).protocol;
+      _url.hostname = new URL(window.origin).hostname;
+      _url.port = new URL(window.origin).port
+      _url.pathname = "amazon" + _url.pathname;
+
+      url = _url.toString();
+
+      const response = await fetch(url, {
+        mode: "cors"
+      });
+      const text = await response.text();
+      const terms = parse(text);
+
       return {
         name: this.parseName(terms),
         price: this.parsePrice(terms),
@@ -36,9 +35,10 @@ export class WebcrawlerService {
       return {
         name: "",
         price: "",
+        description: "",
+        imageUrls: []
       };
     }
-
   }
 
   private parseName(terms: HTMLElement): string {
@@ -65,37 +65,32 @@ export class WebcrawlerService {
   }
 
   private parseDescription(terms: HTMLElement): string {
-    const htmlPriceSelectors = ['#feature-bullets', '#productDescription'];
+    const htmlPriceSelectors = [
+      {
+        selector: '#feature-bullets',
+        subSelector: '.a-list-item'
+      },
+      {
+        selector: '#productDescription',
+        subSelector: 'p'
+      }
+    ];
 
     let bulletsElement: HTMLElement;
-    let indexMode: number | undefined;
+    let result = "";
 
-    for (let selector of htmlPriceSelectors) {
-      bulletsElement = terms.querySelector(selector);
+    for (let selectors of htmlPriceSelectors) {
+      bulletsElement = terms.querySelector(selectors.selector);
       if ((bulletsElement?.innerText?.trim().length != 0) ?? false) {
-        indexMode = htmlPriceSelectors.indexOf(selector);
-        break;
+        result += (bulletsElement!
+          ?.querySelectorAll(selectors.subSelector)
+          ?.map((htmlElement) => htmlElement.innerText.trim())
+          ?.filter((feature) => feature != "")
+          ?.reduce((previous, text) => previous += (" • " + text + "\n"), "")) ?? ""
       }
     }
 
-    switch (indexMode) {
-      case 0:
-        return (bulletsElement!
-          ?.querySelectorAll(".a-list-item")
-          ?.map((htmlElement) => htmlElement.innerText.trim())
-          ?.filter((feature) => feature != "")
-          ?.reduce((previous, text) => previous += (" • " + text + "\n"), "")) ?? "";
-
-      case 1:
-        return (bulletsElement!
-          ?.querySelectorAll("p")
-          ?.map((htmlElement) => htmlElement.innerText.trim())
-          ?.filter((feature) => feature != "")
-          ?.reduce((previous, text) => previous += (" • " + text + "\n"), "")) ?? "";
-
-      default:
-        return "";
-    }
+    return result;
   }
 
   private parseImageUrls(terms: HTMLElement): string[] {
