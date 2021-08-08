@@ -32,6 +32,7 @@ You play with a group (of friends). Each round one of you is selected as "the ba
 Just run `npm run setup` in project root.
 The contents of the folders named `backend` and `frontend` should be self explanatory.
 Use `npm run preview` to build and run a local version on port 3000.
+If your are interested in our experiences while developing (and speak german or can use the good old google translate tool) check out our [Lessons Learned](./LEARNINGS.md).
 
 ### Whats in the techstack?
 The backend is build using a node.js typescript project. It's designed to run on an AWS Elastic Beanstalk environment.
