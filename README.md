@@ -26,6 +26,13 @@ You play with a group (of friends). Each round one of you is selected as "the ba
 * no log-in required
 * use amazon links to directly import product information
 
+#### Screenshots
+![Joining](./doc/Price-Is-Nice/join.jpg)
+![Overview](./doc/Price-Is-Nice/overall.jpg)
+![Babo Input](./doc/Price-Is-Nice/babo_input.jpg)
+![Guess Input](./doc/Price-Is-Nice/guess_input.jpg)
+![Scoreboard](./doc/Price-Is-Nice/scoring.jpg)
+
 ---
 
 ## You are a developer?
