@@ -1,6 +1,6 @@
 # Karotten Kasino
 
-> Kein Kasino für Karotten sondern von Karotten.
+> Kein Kasino für Karotten, sondern von Karotten!
 
 A student projekt using node, socket.io and angular.
 
@@ -8,9 +8,9 @@ Developed by *Karotten Kameraden*: Christian Bettermann | Christoph Fischer | Ph
 
 DHBW Mannheim - WWI19SEB
 
-[Try It Out!](https://kasino.karottenkameraden.de/)
+**[Try It Out!](https://kasino.karottenkameraden.de/)**
 
-There are more files for the project specification in this [Google Drive Folder](https://drive.google.com/drive/folders/1Q7mNMJRtU8z5j1ntx_IXsd-nLDsgmvxS). The folder includes: Product Vision Board, User Story Map, Requirements Engineering, Riskanalysis, Architectural Overview and other files.
+> There are more files for the project specification in this [Google Drive Folder](https://drive.google.com/drive/folders/1Q7mNMJRtU8z5j1ntx_IXsd-nLDsgmvxS). The folder includes: Product Vision Board, User Story Map, Requirements Engineering, Riskanalysis, Architectural Overview and other files.
 
 ---
 
@@ -19,6 +19,7 @@ Currently the Kasino features the following games:
 
 ### Price is nice
 The price guessing multiplayer game based upon the video series by [pietsmiet](https://www.youtube.com/playlist?list=PL5JK9SjdCJp-lOboI8iBv81KH52QVWUVV).
+
 You play with a group (of friends). Each round one of you is selected as "the babo". The babo chooses a product he presents to the rest of the group. Then everybody starts guessing what price he or she thinks the product costs. After everyone has guessed, points are given to the top three players who are closes to the real price of the product. An extra point is awarded if you manage to guess exactly the right price.
 
 #### Top features
