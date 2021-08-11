@@ -50,5 +50,5 @@ We currently host everything on AWS Elastic Beanstalk. All changes to the main b
  
 
 ### About this project
-This project is mostly meant to be a submission for a university task. This task was to build fancy a website with modern technology. We plan to improve on existing features and add more games in the future. But this will mostly stay a site project. If you have ideas feel free to share or just fork the project and implement them yourself. We do not have any financial interesses in this project. 
+This project is mostly meant to be a submission for a university task. This task was to build a fancy website with modern technology. We plan to improve on existing features and add more games in the future. But this will mostly stay a site project. If you have ideas feel free to share or just fork the project and implement them yourself. We do not have any financial interesses in this project. 
 > NOTE: This project is licensed under the [GNU GENERAL PUBLIC LICENSE](./COPYING).
