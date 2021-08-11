@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { stat } from 'fs';
 import { PriceIsNiceService } from 'src/app/services/price-is-nice.service';
 
 @Component({
@@ -9,10 +10,18 @@ import { PriceIsNiceService } from 'src/app/services/price-is-nice.service';
 })
 export class GuessInputComponent {
 
-  constructor(private priceIsNiceService: PriceIsNiceService, private formBuilder: FormBuilder) { }
-
   guessForm = this.formBuilder.group({ guessValue: 0 });
   hidden = false;
+
+  constructor(private priceIsNiceService: PriceIsNiceService, private formBuilder: FormBuilder) {
+
+    this.priceIsNiceService.lobbyStatus.subscribe((status) => {
+      if (status === 0) {
+        this.hidden = false;
+      }
+    });
+
+  }
 
   onSubmit(): void {
     this.priceIsNiceService.takeGuess(this.guessForm.value.guessValue);
