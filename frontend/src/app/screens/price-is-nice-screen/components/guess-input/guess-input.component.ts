@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { stat } from 'fs';
 import { PriceIsNiceService } from 'src/app/services/price-is-nice.service';
 
 @Component({
