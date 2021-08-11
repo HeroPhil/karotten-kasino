@@ -46,9 +46,9 @@ If your are interested in our experiences while developing (and speak german or 
 The backend is build using a node.js typescript project. It's designed to run on an AWS Elastic Beanstalk environment.
 The frontend is build around Angular using the [PrimeNG](https://www.primefaces.org/primeng/) UI design library.
 The communication between client and server is implemented with [socket.io](https://socket.io/). This makes it easy to have different lobbies.
-We currently host everything on AWS Elastic Beanstalk. All changes to the main branch will trigger a Code Pipeline and deploy this version to the production The backend is build using a node.js typescript project. It's designed to run on an AWS Elastic Beanstalk environment. This makes also available under [kasino.karottenkameraden.de](https://kasino.karottenkameraden.de/).
+We currently host everything on AWS Elastic Beanstalk. All changes to the main branch will trigger a Code Pipeline and deploy this version to the production environment. This makes it available under [kasino.karottenkameraden.de](https://kasino.karottenkameraden.de/).
  
 
 ### About this project
-This project is mostly meant to be a submission for a university task. This task was to build fancy a website with modern technology. We plan to improve on existing features and add more games in the future. But this will mostly stay a site project. If you have ideas feel free to share or just fork the project and implement them yourself. We do not have any financial interesses in this project. 
+This project is mostly meant to be a submission for a university task. This task was to build a fancy website with modern technology. We plan to improve on existing features and add more games in the future. But this will mostly stay a site project. If you have ideas feel free to share or just fork the project and implement them yourself. We do not have any financial interesses in this project. 
 > NOTE: This project is licensed under the [GNU GENERAL PUBLIC LICENSE](./COPYING).
