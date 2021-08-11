@@ -144,8 +144,10 @@ export class PriceIsNiceHandler {
                     switch (lobby.getLobbyStatus()) {
                         case LobbyStatus.guessOpen:
                             socket.emit("guessInformation", lobby!.currentGuessInformation!.getNonSensitiveInformation());
+                            break;
                         case LobbyStatus.guessClosed:
                             socket.emit("guessInformation", lobby!.currentGuessInformation!.getAllInformation());
+                            break;
                     }
                 }
 
