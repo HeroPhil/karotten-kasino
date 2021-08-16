@@ -1,3 +1,18 @@
+#gitLink {
+    cursor: pointer;
+    color: var(--text-color);
+    text-decoration: double;
+}
+
+#gitLink:hover {
+    text-decoration: underline;
+    color: var(--primary-color);
+}
+
+.secondLine {
+    margin-top: 0.3rem;
+}
+
 .footer {
     background-color: var(--surface-100);
     padding: var(--content-padding);
