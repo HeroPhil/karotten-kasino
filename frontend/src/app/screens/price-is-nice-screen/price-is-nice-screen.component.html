@@ -7,8 +7,7 @@
     <div class="p-grid p-jc-between header" id="PIN-Header">
 
         <div class="p-col-12 p-md-3 p-lg-3 p-d-none p-d-md-inline-flex" [hidden]="!display">
-            <p-sidebar [(visible)]="display" [style]="{width:'25%'}" [modal]=" false" [dismissible]="false"
-                [closeOnEscape]="false" [baseZIndex]="9999">
+            <p-sidebar [(visible)]="display" [style]="{width:'25%'}" [modal]=" false" [dismissible]="false" [closeOnEscape]="false" [baseZIndex]="9999">
                 <a href="" class="homeText">&#11164; KarottenKasino</a>
                 <app-player-list></app-player-list>
             </p-sidebar>
@@ -19,7 +18,7 @@
         </div>
 
         <div class="p-col-12 p-md-3 p-lg-3" [hidden]="display">
-            <p-button type="text" (click)="display = true" icon="pi pi-plus" label="Players List" [hidden]="display">
+            <p-button type="text" (click)="display = true" icon="pi pi-plus" label="Spielerliste" [hidden]="display">
             </p-button>
         </div>
 
