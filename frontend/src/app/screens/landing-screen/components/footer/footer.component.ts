@@ -9,4 +9,8 @@ export class FooterComponent {
 
   constructor() { }
 
+  openGithub(): void {
+  window.open('https://github.com/HeroPhil/karotten-kasino', '_blank');
+  }
+
 }
